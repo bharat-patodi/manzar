@@ -7,7 +7,7 @@
     "build-manzar": "npm install && cd client && npm install",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "cd client && npm start",
+    "client": "cd client && npm run start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {

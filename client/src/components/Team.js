@@ -19,7 +19,7 @@ class Team extends React.Component {
   render() {
     return (
       <div>
-        <p>AltCampers building this project: </p>
+        <p>AltCampers building this project:- </p>
         <ul>
           {this.state.team.map((teamMate) => {
             return (

@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     bio: String,
     image: String,
-    followings: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }
 );
