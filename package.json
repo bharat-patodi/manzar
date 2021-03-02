@@ -1,0 +1,33 @@
+{
+  "name": "manzar",
+  "version": "0.0.1",
+  "description": "A platform for portfolios",
+  "main": "server.js",
+  "scripts": {
+    "build-manzar": "npm install && cd client && npm install",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bharat-patodi/manzar.git"
+  },
+  "keywords": [
+    "portfolio"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bharat-patodi/manzar/issues"
+  },
+  "homepage": "https://github.com/bharat-patodi/manzar#readme",
+  "dependencies": {
+    "concurrently": "^6.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
