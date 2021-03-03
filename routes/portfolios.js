@@ -93,10 +93,10 @@ router.post("/", jwt.verifyToken, async (req, res, next) => {
 });
 
 // get one portfolio
-router.get("/:slug", jwt.verifyTokenOptional, async (req, res, next) => {
+router.get("/:portfolioId", jwt.verifyTokenOptional, async (req, res, next) => {
   try {
-    const slug = req.params.slug;
-    const portfolio = await Portfolio.findOne({ slug }).populate("author");
+    const portfolioId = req.params.portfolioId;
+    const portfolio = await Portfolio.findById(portfolioId).populate("author");
     res.status(200).json({ portfolio: portfolioInfo(portfolio, req.user) });
   } catch (error) {
     next(error);
@@ -104,14 +104,14 @@ router.get("/:slug", jwt.verifyTokenOptional, async (req, res, next) => {
 });
 
 // update portfolio
-router.put("/:slug", jwt.verifyToken, async (req, res, next) => {
+router.put("/:portfolioId", jwt.verifyToken, async (req, res, next) => {
   try {
-    const slug = req.params.slug;
-    const currentPortfolio = await Portfolio.findOne({ slug });
+    const portfolioId = req.params.portfolioId;
+    const currentPortfolio = await Portfolio.findById(portfolioId);
     verifyAuthor(currentPortfolio.author, req.user.id, res);
 
-    const portfolio = await Portfolio.findOneAndUpdate(
-      { slug },
+    const portfolio = await Portfolio.findByIdAndUpdate(
+      portfolioId,
       req.body.portfolio,
       {
         new: true,
@@ -125,12 +125,12 @@ router.put("/:slug", jwt.verifyToken, async (req, res, next) => {
 });
 
 // delete portfolio
-router.delete("/:slug", jwt.verifyToken, async (req, res, next) => {
+router.delete("/:portfolioId", jwt.verifyToken, async (req, res, next) => {
   try {
-    const slug = req.params.slug;
-    const currentPortfolio = await Portfolio.findOne({ slug });
+    const portfolioId = req.params.portfolioId;
+    const currentPortfolio = await Portfolio.findById(portfolioId);
     verifyAuthor(currentPortfolio.author, req.user.id, res);
-    const portfolio = await Portfolio.findOneAndDelete({ slug });
+    const portfolio = await Portfolio.findByIdAndDelete(portfolioId);
     await Comment.deleteMany({ _id: { $in: portfolio.comments } });
     res.status(200).json({ message: "Portfolio deleted successfully" });
   } catch (error) {
@@ -140,12 +140,12 @@ router.delete("/:slug", jwt.verifyToken, async (req, res, next) => {
 
 // Get all comments of an portfolio
 router.get(
-  "/:slug/comments",
+  "/:portfolioId/comments",
   jwt.verifyTokenOptional,
   async (req, res, next) => {
     try {
-      const slug = req.params.slug;
-      const portfolio = await Portfolio.findOne({ slug }).populate({
+      const portfolioId = req.params.portfolioId;
+      const portfolio = await Portfolio.findById(portfolioId).populate({
         path: "comments",
         populate: "author",
       });
@@ -161,40 +161,42 @@ router.get(
 );
 
 // create a comment
-router.post("/:slug/comments", jwt.verifyToken, async (req, res, next) => {
-  try {
-    const slug = req.params.slug;
-    const author = req.user.id;
-    req.body.comment.author = author;
-    const comment = await (await Comment.create(req.body.comment)).execPopulate(
-      "author"
-    );
-    const portfolio = await Portfolio.findOneAndUpdate(
-      { slug },
-      { $addToSet: { comments: comment.id } }
-    );
-
-    res.status(200).json({ comment: commentInfo(comment, req.user) });
-  } catch (error) {
-    next(error);
-  }
-});
-
-// delete a comment
-router.delete(
-  "/:slug/comments/:id",
+router.post(
+  "/:portfolioId/comments",
   jwt.verifyToken,
   async (req, res, next) => {
     try {
-      const slug = req.params.slug;
+      const portfolioId = req.params.portfolioId;
+      const author = req.user.id;
+      req.body.comment.author = author;
+      const comment = await (
+        await Comment.create(req.body.comment)
+      ).execPopulate("author");
+      const portfolio = await Portfolio.findByIdAndUpdate(portfolioId, {
+        $addToSet: { comments: comment.id },
+      });
+
+      res.status(200).json({ comment: commentInfo(comment, req.user) });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+// delete a comment
+router.delete(
+  "/:portfolioId/comments/:id",
+  jwt.verifyToken,
+  async (req, res, next) => {
+    try {
+      const portfolioId = req.params.portfolioId;
       const commentId = req.params.id;
       const currentComment = await Comment.findById(commentId);
       verifyAuthor(currentComment.author, req.user.id, res);
       const comment = await Comment.findByIdAndDelete(commentId);
-      const portfolio = await Portfolio.findOneAndUpdate(
-        { slug },
-        { $pull: { comments: commentId } }
-      );
+      const portfolio = await Portfolio.findByIdAndUpdate(portfolioId, {
+        $pull: { comments: commentId },
+      });
 
       res
         .status(200)
@@ -206,40 +208,48 @@ router.delete(
 );
 
 // favorite portfolio
-router.post("/:slug/favorite", jwt.verifyToken, async (req, res, next) => {
-  try {
-    const slug = req.params.slug;
-    const portfolio = await Portfolio.findOneAndUpdate(
-      { slug },
-      { $addToSet: { favorites: req.user.id } },
-      { new: true }
-    ).populate("author");
+router.post(
+  "/:portfolioId/favorite",
+  jwt.verifyToken,
+  async (req, res, next) => {
+    try {
+      const portfolioId = req.params.portfolioId;
+      const portfolio = await Portfolio.findByIdAndUpdate(
+        portfolioId,
+        { $addToSet: { favorites: req.user.id } },
+        { new: true }
+      ).populate("author");
 
-    res
-      .status(200)
-      .json({ portfolio: { ...portfolioInfo(portfolio, req.user) } });
-  } catch (error) {
-    next(error);
+      res
+        .status(200)
+        .json({ portfolio: { ...portfolioInfo(portfolio, req.user) } });
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 // unfavorite portfolio
-router.delete("/:slug/favorite", jwt.verifyToken, async (req, res, next) => {
-  try {
-    const slug = req.params.slug;
-    const portfolio = await Portfolio.findOneAndUpdate(
-      { slug },
-      { $pull: { favorites: req.user.id } },
-      { new: true }
-    ).populate("author");
+router.delete(
+  "/:portfolioId/favorite",
+  jwt.verifyToken,
+  async (req, res, next) => {
+    try {
+      const portfolioId = req.params.portfolioId;
+      const portfolio = await Portfolio.findByIdAndUpdate(
+        portfolioId,
+        { $pull: { favorites: req.user.id } },
+        { new: true }
+      ).populate("author");
 
-    res
-      .status(200)
-      .json({ portfolio: { ...portfolioInfo(portfolio, req.user) } });
-  } catch (error) {
-    next(error);
+      res
+        .status(200)
+        .json({ portfolio: { ...portfolioInfo(portfolio, req.user) } });
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 function portfolioInfo(portfolio, currentUser) {
   const isFavorite = currentUser
@@ -247,10 +257,7 @@ function portfolioInfo(portfolio, currentUser) {
     : false;
 
   return {
-    slug: portfolio.slug,
-    title: portfolio.title,
-    description: portfolio.description,
-    body: portfolio.body,
+    url: portfolio.url,
     tagList: portfolio.tagList,
     author: profileInfo(portfolio.author, currentUser),
     favorited: isFavorite,
