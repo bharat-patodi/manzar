@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const logger = require("morgan");
+const path = require("path");
 
 const app = express();
 const PORT = 5000;
@@ -28,6 +30,11 @@ app.get("/api/team", (req, res) => {
   ];
   res.json(teamMates);
 });
+
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
