@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 const PORT = 5000;
 
+require("dotenv").config();
+
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users").router;
 const profilesRouter = require("./routes/profiles").router;
