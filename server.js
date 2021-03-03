@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 
 const app = express();
 const PORT = 5000;
@@ -9,6 +10,14 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users").router;
 const profilesRouter = require("./routes/profiles").router;
 const portfoliosRouter = require("./routes/portfolios");
+
+mongoose.connect(
+  process.env.MONGODB_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (err) => {
+    console.log(err ? err : "Connected");
+  }
+);
 
 // TEST ROUTE
 app.get("/api/team", (req, res) => {
