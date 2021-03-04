@@ -253,7 +253,7 @@ router.delete(
 
 function portfolioInfo(portfolio, currentUser) {
   const isFavorite = currentUser
-    ? portfolio.favorites.includes(currentUser.id)
+    ? portfolio?.favorites?.includes(currentUser.id)
     : false;
 
   return {
