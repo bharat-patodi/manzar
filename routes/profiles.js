@@ -48,7 +48,7 @@ router.delete("/:username/follow", jwt.verifyToken, async (req, res, next) => {
 
 function profileInfo(user, currentUser) {
   const isFollowing = currentUser
-    ? currentUser.followings.includes(user.id)
+    ? currentUser?.followings?.includes(user.id)
     : false;
   return {
     username: user.username,
