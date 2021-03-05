@@ -26,6 +26,7 @@ userSchema.pre("save", function (next) {
   }
 });
 
+// TODO: change sync to async methods
 userSchema.methods.verifyPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
