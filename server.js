@@ -2,16 +2,21 @@ const express = require("express");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
+const passport = require("passport");
+const cookieSession = require("cookie-session");
 
 const app = express();
 const PORT = 5000;
 
 require("dotenv").config();
 
+require("./config/passport");
+
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users").router;
 const profilesRouter = require("./routes/profiles").router;
 const portfoliosRouter = require("./routes/portfolios");
+const authRouter = require("./routes/auth");
 
 mongoose.connect(
   process.env.MONGODB_URI,
@@ -36,9 +41,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/profiles", profilesRouter);
 app.use("/api/portfolios", portfoliosRouter);
+app.use("/api/auth", authRouter);
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
