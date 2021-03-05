@@ -12,10 +12,12 @@ Import partials (Start using @use now)
 @import "base/variables";
 @import "base/base-styles";
 @import "base/modular";
-@import "components/header";
-@import "components/footer";
+@import "partials/spinner";
+@import "partials/header";
+@import "partials/footer";
 @import "components/card";
 @import "components/dashboard";
+@import "components/auth";
 
 /* ---------------------------------------------------------------
 Project Specific Styles
