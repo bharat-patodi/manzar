@@ -1,6 +1,7 @@
 .portfolio-card {
   border: 3px solid salmon;
   display: inline-block;
+  cursor: pointer;
   &__image {
     width: 100%;
   }
