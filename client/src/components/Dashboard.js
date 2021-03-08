@@ -27,10 +27,9 @@ class Dashboard extends React.Component {
       });
   }
 
-
-  changeModalState = () => this.setState(prevState => ({
-    isModalOpen: !prevState.isModalOpen
-  }));
+  openModal = () => this.setState({ isModalOpen: true });
+  closeModal = () => this.setState({ isModalOpen: false });
+  
 
   render() {
     if (this.state.portfolios.length === 0) return <p>Loading...</p>;
@@ -42,7 +41,8 @@ class Dashboard extends React.Component {
             title="Getify Portfolio"
             author={this.state.portfolios[1].author.username}
             isModalOpen = {this.state.isModalOpen}
-            changeModalState = {this.changeModalState}
+            openModal = {this.openModal}
+            closeModal = {this.closeModal}
 
           />
         </div>
