@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
 const passport = require("passport");
-const cookieSession = require("cookie-session");
+const { cloudinaryConfig } = require("./config/cloudinary");
 
 const app = express();
 const PORT = 5000;
@@ -39,6 +39,7 @@ app.get("/api/team", (req, res) => {
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use("*", cloudinaryConfig);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(passport.initialize());
