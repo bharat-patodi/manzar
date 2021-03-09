@@ -45,22 +45,26 @@
 
 .modal__user, 
 .modal__portfolio,
-.description-container {
+.description-container,
+.comment-section {
   max-width: 768px;
   width: 100%;
-  margin: 2rem auto;
+  margin: 2.8rem auto;
 }
 
 .modal__portfolio {
-  // position: relative;
-  // min-height: 100vh;
+  width: 800px;
+  min-height: 600px;
+  overflow: hidden;
 
   .portfolio-preview {
-    border-radius: 8px;
-    border-radius: 8px;
-    width: 100%;
-    overflow: hidden;
-    position: absolute;
+    width: 818px;
+    min-height: 618px;
+    // border-radius: 8px;
+    // width: 100%;
+    // overflow: hidden;
+    // position: absolute;
+    // height: 100vh;
   }
 
   .portfolio-link {
@@ -70,19 +74,7 @@
     bottom: 0;
     left: 0;
   }
-
 }
-
-.description-container{
-
-  p {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 32px;
-    color: #3d3d4e;
-  }
-}
-
 
 .portfolio-item {
   border: 1px solid #eee;
@@ -104,5 +96,83 @@
   transition: 5s ease;
 }
 
+.user-info {
+
+  &__container {
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-right: 1rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+
+  &__header-details {
+      .portfolio-title {
+        font-size: 1rem;
+        line-height: 2rem;
+      }
+      .user-link,
+      .user-follow {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        color: #0d0c22;
+        text-decoration: underline;
+      }
+
+      .user-follow {
+        text-decoration: none;
+        margin-left: 0.5rem;
+
+        &:hover {
+          color: #ea4c89;
+        }
+      }
+  }
+
+  &__header-actions {
+    padding-top: 0.4rem;
+
+    .like-button {
+      background: #f3f3f4;
+      color: #0d0c22;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 0.5rem 0.8rem;
+      margin: 0 0.6rem;
+
+      &:hover {
+        background-color: #e7e7e9;
+      }
+    }
+  }
+}
+
+
+.description-container{
+    margin-top: 4rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 2rem;
+    color: #3d3d4e;
+
+    p:not(:first-child) {
+      margin-top: 1rem;
+
+      a {
+        color: #ea4c89;
+
+        &:hover {
+          color: #f082ac;
+        }
+      }
+  }
+}
 
 
