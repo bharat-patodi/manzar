@@ -129,6 +129,11 @@ class Login extends Component {
           <button type="submit" className="btn-large">
             {isLogging ? <Spinner /> : "Sign In"}
           </button>
+         <div>
+         <button type="submit" className="btn-large btn-large-oauth">
+            {isLogging ? <Spinner /> : "Sign In with google"}
+          </button>
+         </div>
         </form>
       </section>
     );

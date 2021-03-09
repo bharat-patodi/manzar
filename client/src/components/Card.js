@@ -1,6 +1,10 @@
+import Modal from "./Modal"
+
 export default function Card(props) {
+  console.log(props)
   return (
-    <div className="portfolio-card">
+    <>
+    <div className="portfolio-card" onClick = {props.openModal}>
       <img
         src={props.prominentImage}
         alt=""
@@ -12,5 +16,7 @@ export default function Card(props) {
         <p>Likes</p>
       </div>
     </div>
+    {props.isModalOpen ? <Modal isModalOpen = {props.isModalOpen} closeModal = {props.closeModal}/> : ""}
+    </>
   );
 }
