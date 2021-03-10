@@ -2,7 +2,7 @@ import "../styles/App.scss";
 import Header from "../components/partials/Header";
 import Footer from "../components/partials/Footer";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Dashboard from "../components/Dashboard";
+import Home from "../components/Home";
 import Register from "../components/Register";
 import Login from "../components/Login";
 
@@ -12,7 +12,7 @@ function App() {
       <Header />
       <div className="App">
         <Route path="/" exact>
-          <Dashboard />
+          <Home />
         </Route>
         <Route path="/register">
           <Register />

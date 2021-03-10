@@ -1,0 +1,38 @@
+.home {
+  .hero {
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+    text-align: center;
+    background-color: $primary-color;
+    width: 100%;
+  }
+  .dashboard {
+    padding: 1rem;
+    &__card-showcase {
+      // margin-top: 10rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-gap: 2rem;
+    }
+  }
+
+  .tag-bar {
+    margin: 1rem;
+    * {
+      margin: 0.1rem;
+    }
+    text-align: center;
+  }
+
+  .tag {
+    font-size: 0.8rem;
+  }
+
+  .pagination {
+    margin: 1rem;
+  }
+  .page-number {
+    margin: 1rem;
+    cursor: pointer;
+  }
+}

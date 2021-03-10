@@ -1,0 +1,19 @@
+footer {
+  //   margin-top: 10rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(darken($primary-color, 50%), 0.2);
+  padding: 1rem;
+  //   position: fixed;
+  //   bottom: 0;
+  //   left: 0;
+  //   right: 0;
+  * {
+    color: #2d2d2d;
+    margin-right: 1rem;
+    text-decoration: none;
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}

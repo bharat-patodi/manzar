@@ -5,7 +5,7 @@ Import font-families
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Merriweather:wght@300;400;700;900&display=swap");
 
 /* ---------------------------------------------------------------
-Import partials (Start using @use now)
+Import partials
 --------------------------------------------------------------- */
 
 @import "base/reset";
@@ -16,9 +16,11 @@ Import partials (Start using @use now)
 @import "partials/header";
 @import "partials/footer";
 @import "components/card";
-@import "components/dashboard";
 @import "components/auth";
 @import "components/modal";
+@import "components/header";
+@import "components/footer";
+@import "pages/home";
 
 /* ---------------------------------------------------------------
 Project Specific Styles

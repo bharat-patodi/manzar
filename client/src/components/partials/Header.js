@@ -4,7 +4,7 @@ function Header() {
   return (
     <header>
       <nav>
-        Logo
+        <p>manzar</p>
         <ul>
           <li>
             <Link>Home</Link>
