@@ -1,0 +1,68 @@
+.editor {
+  padding: 3rem 0;
+  text-align: center;
+  &__heading {
+    @extend .auth__heading;
+  }
+  &__server-error {
+    color: $red-color;
+  }
+  &__form-label {
+    @extend .auth__form-label;
+  }
+  &__form {
+    @extend .auth__form;
+    max-width: 40rem;
+    label,
+    span {
+      text-align: left;
+    }
+  }
+  &__form-group {
+    margin: 0.35rem 0;
+  }
+  &__form-control {
+    @extend .auth__form-control;
+    display: block;
+  }
+  &__form-control:focus {
+    @extend .auth__form-control:focus;
+  }
+  &__error-msg {
+    @extend .auth__error-msg;
+  }
+  &__tag-list {
+    padding-top: 0.6rem;
+  }
+  &__tag-default {
+    border-radius: 1px;
+    border: 1px solid $blue-color;
+    display: inline-block;
+    margin-right: 0.3rem;
+    strong {
+      padding: 0.6rem;
+      font-weight: 500;
+    }
+  }
+  &__close-round {
+    background: $black-color;
+    padding: 0.25rem 0.4rem;
+    color: $white-color;
+    border-radius: 1px;
+    cursor: pointer;
+  }
+  .auth__error {
+    border-color: $red-color;
+    box-shadow: none;
+  }
+  .btn {
+    margin-top: 1rem;
+  }
+  .drop-down-text {
+    font-weight: 700;
+  }
+}
+
+.hello {
+  align-items: center;
+}

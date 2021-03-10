@@ -17,7 +17,7 @@
   &__form {
     max-width: 30rem;
     margin: 1rem auto;
-    background: $primary-color;
+    background: $tertiary-color;
     padding: 1.5rem 2rem;
     border-radius: 10px;
     label,
@@ -42,7 +42,7 @@
   &__form-control:focus {
     border-color: $blue-color;
     outline: 0;
-    box-shadow: 0 0 5px $blue-color;
+    box-shadow: 0 0 0 3px rgba($blue-color, 0.3);
   }
   .auth__error {
     border-color: $red-color;
