@@ -1,0 +1,48 @@
+.comment-container {
+  .title {
+    font-size: 1rem;
+    line-height: 2rem;
+    /* margin-bottom: 1rem; */
+    padding: 1rem 1rem 0;
+  }
+  .user-comment {
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    form {
+      width: 85%;
+
+      input {
+        border-radius: 8px;
+        outline: none;
+        padding: 0.5rem 0.8rem;
+        width: 100%;
+      }
+    }
+  }
+
+  .display-comment {
+    ul {
+      li {
+        border-top: 1px solid #dad5d5;
+        padding: 1rem 1.4rem;
+
+        .user-details {
+          .user-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+          }
+          .comment-timestamp,
+          .comment-count {
+            color: #999;
+            margin-left: 0.5rem;
+          }
+        }
+      }
+    }
+
+    .comment {
+      padding-left: 4rem;
+    }
+  }
+}

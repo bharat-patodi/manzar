@@ -1,6 +1,7 @@
-import Modal from "./Modal";
+import Modal from "./Modal/Modal";
 
 export default function Card(props) {
+  console.log(props);
   return (
     <>
       <div className="portfolio-card" onClick={props.openModal}>
