@@ -1,7 +1,7 @@
 import Modal from "./Modal/Modal";
 
 export default function Card(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <>
       <div className="portfolio-card" onClick={props.openModal}>
@@ -17,7 +17,11 @@ export default function Card(props) {
         </div>
       </div>
       {props.isModalOpen ? (
-        <Modal isModalOpen={props.isModalOpen} closeModal={props.closeModal} />
+        <Modal
+          isModalOpen={props.isModalOpen}
+          closeModal={props.closeModal}
+          author={props.author}
+        />
       ) : (
         ""
       )}

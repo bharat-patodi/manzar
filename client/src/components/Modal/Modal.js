@@ -19,7 +19,7 @@ function Modal(props) {
                     <img
                       className="user-avatar"
                       src="https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707"
-                      alt="user-profile-picture"
+                      alt="user-profile-avatar"
                     ></img>
                     <div className="user-info__header-details">
                       <h1 className="portfolio-title">
@@ -39,13 +39,16 @@ function Modal(props) {
                     <a className="modal-button btn" href="https://jonny.me/">
                       Portfolio
                     </a>
-                    <a className="modal-button btn">🖤 Like</a>
+                    <a className="modal-button btn" href="/profile">
+                      🖤 Like
+                    </a>
                   </div>
                 </div>
               </div>
 
               <div className="modal__portfolio">
                 <iframe
+                  title="portfolio"
                   src="https://jonny.me/"
                   frameBorder="0"
                   className="portfolio-preview"
@@ -85,7 +88,7 @@ function Modal(props) {
                   <img
                     className="photo"
                     src="https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707"
-                    alt="user-profile-picture"
+                    alt="user-profile-avatar"
                   ></img>
                 </a>
                 <span className="user-avatar-line"></span>

@@ -7,7 +7,7 @@ export default function Comments() {
           <img
             className="user-avatar"
             src="https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707"
-            alt="user-profile-picture"
+            alt="user-profile-avatar"
           ></img>
           <form>
             <input placeholder="Write a comment"></input>
@@ -21,7 +21,7 @@ export default function Comments() {
                   <img
                     className="user-avatar"
                     src="https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707"
-                    alt="user-profile-picture"
+                    alt="user-profile-avatar"
                   ></img>
                   <span className="user-name">Petar A</span>
                   <span className="comment-timestamp">Just now</span>
@@ -29,8 +29,12 @@ export default function Comments() {
                 </div>
 
                 <div className="comment-actions">
-                  <a className="modal-button btn">Edit</a>
-                  <a className="modal-button btn">Delete</a>
+                  <a className="modal-button btn" href="/comment/edit">
+                    Edit
+                  </a>
+                  <a className="modal-button btn" href="/comment/delete">
+                    Delete
+                  </a>
                 </div>
               </div>
               <div className="comment">
@@ -44,7 +48,7 @@ export default function Comments() {
                   <img
                     className="user-avatar"
                     src="https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707"
-                    alt="user-profile-picture"
+                    alt="user-profile-avatar"
                   ></img>
                   <span className="user-name">Petar A</span>
                   <span className="comment-timestamp">Just now</span>
@@ -52,8 +56,12 @@ export default function Comments() {
                 </div>
 
                 <div className="comment-actions">
-                  <a className="modal-button btn">Edit</a>
-                  <a className="modal-button btn">Delete</a>
+                  <a className="modal-button btn" href="/comment/edit">
+                    Edit
+                  </a>
+                  <a className="modal-button btn" href="/comment/delete">
+                    Delete
+                  </a>
                 </div>
               </div>
               <div className="comment">
