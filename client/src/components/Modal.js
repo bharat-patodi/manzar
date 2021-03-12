@@ -1,5 +1,5 @@
-import Comments from "./Comments";
-import Thumbnails from "./Thumbnails";
+import Comments from "./partials/Comments";
+import Thumbnails from "./partials/Thumbnails";
 
 function Modal(props) {
   return (
