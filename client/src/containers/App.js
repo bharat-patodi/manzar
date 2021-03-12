@@ -9,7 +9,7 @@ import Register from "../components/Register";
 import Login from "../components/Login";
 import AddPortfolio from "../components/AddPortfolio";
 import NoMatch from "../components/NoMatch";
-import { localStorageKey, currentUserURL } from "../components/utility/utility";
+import { LOCAL_STORAGE_KEY, CURRENT_USER_URL } from "../utility/constants";
 
 class App extends Component {
   state = {
@@ -18,13 +18,13 @@ class App extends Component {
     isVerifying: true,
   };
   componentDidMount() {
-    const token = localStorage.getItem(localStorageKey);
+    const token = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (token) {
       const requestOptions = {
         method: "GET",
-        headers: { authorization: localStorage.getItem(localStorageKey) },
+        headers: { authorization: localStorage.getItem(LOCAL_STORAGE_KEY) },
       };
-      fetch(currentUserURL, requestOptions)
+      fetch(CURRENT_USER_URL, requestOptions)
         .then(async (res) => {
           if (!res.ok) {
             const { errors } = await res.json();
@@ -45,11 +45,11 @@ class App extends Component {
   }
   updateUser = (user) => {
     this.setState({ isLoggedIn: true, user, isVerifying: false });
-    localStorage.setItem(localStorageKey, user.token);
+    localStorage.setItem(LOCAL_STORAGE_KEY, user.token);
   };
   deleteUser = () => {
     this.setState({ isLoggedIn: false, user: null });
-    localStorage.setItem(localStorageKey, "");
+    localStorage.setItem(LOCAL_STORAGE_KEY, "");
   };
   render() {
     const { isLoggedIn, user, isVerifying } = this.state;

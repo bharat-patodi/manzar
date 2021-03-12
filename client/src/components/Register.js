@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import { registerURL } from "./utility/utility";
+import { REGISTER_URL } from "../utility/constants";
 import { withRouter } from "react-router-dom";
 import Spinner from "./partials/Spinner";
 
@@ -34,7 +34,7 @@ class Register extends Component {
         body: JSON.stringify({ user }),
       };
 
-      fetch(registerURL, requestOptions)
+      fetch(REGISTER_URL, requestOptions)
         .then((res) => {
           if (res.status !== 422 && !res.ok) {
             throw new Error(res.statusText);
