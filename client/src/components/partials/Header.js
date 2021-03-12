@@ -1,29 +1,96 @@
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
   return (
-    <header>
-      <nav>
-        <p>manzar</p>
-        <ul>
-          <li>
-            <Link>Home</Link>
-          </li>
-          <li>
-            <Link>About Us</Link>
-          </li>
-          <li>
-            <Link>Contact Us</Link>
-          </li>
-          <li>
-            <Link>Portfolios</Link>
-          </li>
-          <li>
-            <Link>Premium</Link>
-          </li>
-        </ul>
-      </nav>
+    <header className="header">
+      <div className="container flex">
+        <Link className="header__logo" to="/">
+          Manzr
+        </Link>
+        <nav>
+          {props.isLoggedIn ? (
+            <AuthHeader user={props.user} />
+          ) : (
+            <NonAuthHeader />
+          )}
+        </nav>
+      </div>
     </header>
+  );
+}
+
+function NonAuthHeader() {
+  return (
+    <ul className="header__links">
+      <li>
+        <NavLink
+          className="header__nav-link"
+          activeClassName="active"
+          to="/"
+          exact
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className="header__nav-link"
+          activeClassName="active"
+          to="/login"
+        >
+          Sign In
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className="header__nav-link"
+          activeClassName="active"
+          to="/register"
+        >
+          Sign Up
+        </NavLink>
+      </li>
+    </ul>
+  );
+}
+
+function AuthHeader(props) {
+  return (
+    <ul className="header__links">
+      <li>
+        <NavLink
+          className="header__nav-link"
+          activeClassName="active"
+          to="/"
+          exact
+        >
+          Dashboard
+        </NavLink>
+      </li>
+      <li>
+        <NavLink className="header__nav-link" to="/editor">
+          New Portfolio
+        </NavLink>
+      </li>
+      <li>
+        <NavLink className="header__nav-link" to="/settings">
+          Settings
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className="header__nav-link avatar-div"
+          to={`/profiles/${props.user.username}`}
+        >
+          <img
+            src={props.user.image || "http://i.imgur.com/Xzm3mI0.jpg"}
+            className="header__avatar"
+            alt="user avatar"
+          />
+          {props.user.username}
+        </NavLink>
+      </li>
+    </ul>
   );
 }
 

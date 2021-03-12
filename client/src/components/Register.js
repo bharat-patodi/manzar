@@ -87,7 +87,7 @@ class Register extends Component {
     } = this.state;
 
     return (
-      <section className="full-height auth">
+      <section className="full-height auth skip-header">
         <div className="container">
           <h1 className="auth__heading">Sign up</h1>
           <p className="auth__link">

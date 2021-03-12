@@ -42,6 +42,11 @@ Modular Classes
     color: darken($secondary-color, 50%);
     // color: #ecf0f1;
   }
+  &.active {
+    background-color: black;
+    font-weight: 700;
+    color: darken($secondary-color, 10%);
+  }
   &:active {
     background-color: darken($secondary-color, 10%);
     font-weight: 400;
@@ -64,8 +69,6 @@ Modular Classes
   font-size: 1.3rem;
 }
 
-.active {
-  background-color: black;
-  font-weight: 700;
-  color: darken($secondary-color, 10%);
+.skip-header {
+  margin-top: 70px;
 }

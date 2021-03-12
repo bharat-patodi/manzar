@@ -54,7 +54,7 @@ class Home extends React.Component {
       );
     }
     return (
-      <div className="home">
+      <div className="home skip-header">
         <section className="hero">
           <h1>Portfolio is a box of chocolates!</h1>
         </section>

@@ -149,7 +149,7 @@ class AddPortfolio extends Component {
     } = this.state;
 
     return (
-      <section className="editor">
+      <section className="editor skip-header">
         <div className="container">
           <h1 className="editor__heading">Add Portfolio</h1>
           <p className="editor__server-error">{requestError}</p>
