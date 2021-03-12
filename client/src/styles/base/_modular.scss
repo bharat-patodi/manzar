@@ -35,6 +35,10 @@ Modular Classes
   cursor: pointer;
 }
 
+.btn:hover {
+  background: rgba($secondary-color, 0.9);
+}
+
 .btn-large {
   @extend .btn;
   padding: 0.8rem 1.2rem;
