@@ -9,22 +9,34 @@ function Modal(props) {
                 <div className="overlay__modal-container">
                     <div className="overlay__modal-content-container">
                         <div className="modal__user">
-                            <img src="https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707" alt="user-profile-picture"></img>
-                            <div className = "user-info">
-                                <h2 className= "portfolio_title">Personal portfolio website</h2>
-                                <h4 className="user-name">Masud Rana</h4>
-                                <button className="follow-user">Follow</button>
+                            <div className = "user-info flex-between">
+                                <div className="user-info__container">
+                                    <img src="https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707" alt="user-profile-picture"></img>
+                                    <div className="user-info__header-details">
+                                        <h1 className= "portfolio-title">Personal portfolio website</h1>
+                                        <div className="flex">
+                                            <a className="user-link" href="/profile">Masud Rana</a>
+                                            <a className="user-follow" href="/profile/follow">Follow</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div className="user-info__header-actions">
+                                    <a className="like-button btn" href="https://jonny.me/">Portfolio</a>
+                                    <a className="like-button btn">🖤 Like</a>
+                            </div>
+                                
+        
                             </div>
                         </div>
 
                         <div className="modal__portfolio" >
-                            {/* <iframe src="https://jonny.me/" frameBorder = "0" scrolling="no" className="portfolio-preview" height="600%" width="100%"/>
-                            <a href="https://jonny.me/"alt="portfolio-link" className="portfolio-link"/> */}
-                            <a href="https://jonny.me/" className="portfolio-item-link"
+                            <iframe src="https://jonny.me/" frameBorder = "0"  className="portfolio-preview" height="600%" width="100%"/>
+                            {/* <a href="https://jonny.me/"alt="portfolio-link" className="portfolio-link"/> */}
+                            {/* <a href="https://jonny.me/" className="portfolio-item-link"
                             style={{backgroundImage: "url(" + "https://images.unsplash.com/photo-1603539947678-cd3954ed515d?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80" + ")"}}
                             >
 
-                            </a>    
+                            </a>     */}
                         </div>
                     
                         <div className="description-container">
@@ -37,6 +49,8 @@ function Modal(props) {
                             <a href="mailto:abc@gamil.com">mailto:abc@gamil.com</a>
                             </p>
                         </div>
+
+                        <div className="comment-section"> Comments</div>
                     </div>
                     
                 </div>
