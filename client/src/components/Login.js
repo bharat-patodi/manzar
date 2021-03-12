@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import { loginURL } from "./utility/utility";
+import { LOGIN_URL } from "../utility/constants";
 import { validateUserInfo } from "./Register";
 import { withRouter } from "react-router-dom";
 import Spinner from "./partials/Spinner";
@@ -30,7 +30,7 @@ class Login extends Component {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ user }),
       };
-      fetch(loginURL, requestOptions)
+      fetch(LOGIN_URL, requestOptions)
         .then((res) => {
           if (res.status !== 422 && !res.ok) {
             throw new Error(res.statusText);

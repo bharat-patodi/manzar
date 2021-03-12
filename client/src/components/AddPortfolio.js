@@ -1,7 +1,7 @@
 import { Component, createRef } from "react";
 import { withRouter } from "react-router-dom";
 import Spinner from "./partials/Spinner";
-import { portfolioURL, localStorageKey } from "./utility/utility";
+import { PORTFOLIOS_URL, LOCAL_STORAGE_KEY } from "../utility/constants";
 
 class AddPortfolio extends Component {
   constructor(props) {
@@ -62,12 +62,12 @@ class AddPortfolio extends Component {
     const requestOptions = {
       method: "POST",
       headers: {
-        authorization: localStorage.getItem(localStorageKey),
+        authorization: localStorage.getItem(LOCAL_STORAGE_KEY),
       },
       body: formData,
     };
 
-    fetch(portfolioURL, requestOptions)
+    fetch(PORTFOLIOS_URL, requestOptions)
       .then(async (res) => {
         if (!res.ok) {
           const { errors } = await res.json();

@@ -1,10 +1,37 @@
-header {
-  nav {
+.header {
+  padding: 0.85rem 0;
+  box-shadow: 0 1px 3px rgba($black-color, 0.6);
+  .container.flex {
     display: flex;
     justify-content: space-between;
-    ul {
-      display: flex;
-      gap: 1rem;
-    }
+  }
+  &__logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  &__links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  &__nav-link {
+    color: $black-color;
+  }
+  &__nav-link:hover {
+    color: $secondary-color;
+  }
+  &__nav-link.active {
+    color: darken($secondary-color, 10%);
+  }
+  &__avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    box-shadow: 0 0 3px rgba($black-color, 0.7);
+  }
+  &__nav-link.avatar-div {
+    display: flex;
+    align-items: center;
   }
 }

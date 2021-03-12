@@ -3,13 +3,13 @@ import "../styles/App.scss";
 import Header from "../components/partials/Header";
 import Footer from "../components/partials/Footer";
 import FullPageSpinner from "../components/partials/FullPageSpinner";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Home from "../components/Home";
 import Register from "../components/Register";
 import Login from "../components/Login";
 import AddPortfolio from "../components/AddPortfolio";
 import NoMatch from "../components/NoMatch";
-import { localStorageKey, currentUserURL } from "../components/utility/utility";
+import { LOCAL_STORAGE_KEY, CURRENT_USER_URL } from "../utility/constants";
 
 class App extends Component {
   state = {
@@ -17,14 +17,22 @@ class App extends Component {
     user: null,
     isVerifying: true,
   };
+  updateUser = (user) => {
+    this.setState({ isLoggedIn: true, user, isVerifying: false });
+    localStorage.setItem(LOCAL_STORAGE_KEY, user.token);
+  };
+  deleteUser = () => {
+    this.setState({ isLoggedIn: false, user: null });
+    localStorage.setItem(LOCAL_STORAGE_KEY, "");
+  };
   componentDidMount() {
-    const token = localStorage.getItem(localStorageKey);
+    const token = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (token) {
       const requestOptions = {
         method: "GET",
-        headers: { authorization: localStorage.getItem(localStorageKey) },
+        headers: { authorization: localStorage.getItem(LOCAL_STORAGE_KEY) },
       };
-      fetch(currentUserURL, requestOptions)
+      fetch(CURRENT_USER_URL, requestOptions)
         .then(async (res) => {
           if (!res.ok) {
             const { errors } = await res.json();
@@ -43,14 +51,6 @@ class App extends Component {
       this.setState({ isVerifying: false });
     }
   }
-  updateUser = (user) => {
-    this.setState({ isLoggedIn: true, user, isVerifying: false });
-    localStorage.setItem(localStorageKey, user.token);
-  };
-  deleteUser = () => {
-    this.setState({ isLoggedIn: false, user: null });
-    localStorage.setItem(localStorageKey, "");
-  };
   render() {
     const { isLoggedIn, user, isVerifying } = this.state;
 
@@ -59,7 +59,7 @@ class App extends Component {
     }
 
     return (
-      <Router>
+      <>
         <Header isLoggedIn={isLoggedIn} user={user} />
         {isLoggedIn ? (
           <AuthenticatedApp
@@ -71,7 +71,7 @@ class App extends Component {
           <UnAuthenticatedApp updateUser={this.updateUser} />
         )}
         <Footer />
-      </Router>
+      </>
     );
   }
 }

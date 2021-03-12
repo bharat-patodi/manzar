@@ -1,4 +1,4 @@
-import Modal from "./Modal/Modal";
+import Modal from "./Modal";
 
 export default function Card(props) {
   // console.log(props);
