@@ -3,7 +3,7 @@ var Datauri = require("datauri/parser");
 var path = require("path");
 
 var storage = multer.memoryStorage();
-var multerUploads = multer({ storage }).single("avatar");
+var multerUploads = multer({ storage }).single("image");
 
 var dUri = new Datauri();
 

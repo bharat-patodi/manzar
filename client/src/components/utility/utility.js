@@ -1,5 +1,5 @@
 const URL = "/api";
-const portfolioURL = URL + "/articles";
+const portfolioURL = URL + "/portfolios";
 const feedURL = portfolioURL + "/feed";
 const tagsURL = URL + "/tags";
 const loginURL = URL + "/users/login";

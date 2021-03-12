@@ -6,6 +6,8 @@ const Comment = require("../models/Comment");
 const jwt = require("../modules/token");
 const { profileInfo } = require("./profiles");
 const { verifyAuthor } = require("../midlewares/auth");
+const { uploader, cloudinaryConfig } = require("../config/cloudinary");
+const { multerUploads, dataUri } = require("../midlewares/multer");
 
 // get all portfolios
 router.get("/", jwt.verifyTokenOptional, async (req, res, next) => {
@@ -79,13 +81,40 @@ router.get("/feed", jwt.verifyToken, async (req, res, next) => {
 });
 
 // create portfolio
-router.post("/", jwt.verifyToken, async (req, res, next) => {
+router.post("/", jwt.verifyToken, multerUploads, async (req, res, next) => {
   try {
-    req.body.portfolio.author = req.user.id;
-    const portfolio = await (
-      await Portfolio.create(req.body.portfolio)
-    ).execPopulate("author");
+    req.body.author = req.user.id;
+    console.log(req.body);
+    if (req.body.stackList) {
+      req.body.stackList = JSON.parse(req.body.stackList);
+    }
+    if (req.body.tagList) {
+      req.body.tagList = JSON.parse(req.body.tagList);
+    }
+    if (req.file) {
+      const file = dataUri(req).content;
+      return uploader
+        .upload(file)
+        .then(async (result) => {
+          var url = result.url;
+          req.body.image = url;
 
+          const portfolio = await (
+            await Portfolio.create(req.body)
+          ).execPopulate("author");
+
+          res
+            .status(201)
+            .json({ portfolio: portfolioInfo(portfolio, req.user) });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    const portfolio = await (await Portfolio.create(req.body)).execPopulate(
+      "author"
+    );
     res.status(201).json({ portfolio: portfolioInfo(portfolio, req.user) });
   } catch (error) {
     next(error);
@@ -257,8 +286,12 @@ function portfolioInfo(portfolio, currentUser) {
     : false;
 
   return {
+    id: portfolio.id,
     url: portfolio.url,
+    description: portfolio.description,
     tagList: portfolio.tagList,
+    stackList: portfolio.stackList,
+    image: portfolio.image,
     author: profileInfo(portfolio.author, currentUser),
     favorited: isFavorite,
     favoritesCount: portfolio.favorites.length,

@@ -88,99 +88,103 @@ class Register extends Component {
 
     return (
       <section className="full-height auth">
-        <h1 className="auth__heading">Sign up</h1>
-        <p className="auth__link">
-          <Link to="/login">Have an account?</Link>
-        </p>
-        <p className="auth__server-error">{validationError}</p>
-        <p className="auth__server-error">{requestError}</p>
-        <form onSubmit={this.handleSubmit} className="auth__form">
-          <fieldset className="auth__form-group">
-            <label className="auth__form-label" htmlFor="name">
-              Full Name
-            </label>
-            <input
-              id="name"
-              onChange={this.handleChange}
-              name="name"
-              value={name}
-              className={`auth__form-control ${errors.name && "auth__error"}`}
-              type="text"
-              placeholder="Enter name"
-              required
-            />
-          </fieldset>
-          {errors.name ? (
-            <span className="auth__error-msg">{errors.name}</span>
-          ) : (
-            ""
-          )}
-          <fieldset className="auth__form-group">
-            <label className="auth__form-label" htmlFor="username">
-              Username
-            </label>
-            <input
-              id="username"
-              onChange={this.handleChange}
-              name="username"
-              value={username}
-              className={`auth__form-control ${
-                errors.username && "auth__error"
-              }`}
-              type="text"
-              placeholder="Enter username"
-              required
-            />
-          </fieldset>
-          {errors.username ? (
-            <span className="auth__error-msg">{errors.username}</span>
-          ) : (
-            ""
-          )}
-          <fieldset className="auth__form-group">
-            <label className="auth__form-label" htmlFor="username">
-              Email
-            </label>
-            <input
-              onChange={this.handleChange}
-              name="email"
-              value={email}
-              className={`auth__form-control ${errors.email && "auth__error"}`}
-              type="email"
-              placeholder="Enter email"
-              required
-            />
-          </fieldset>
-          {errors.email ? (
-            <span className="auth__error-msg">{errors.email}</span>
-          ) : (
-            ""
-          )}
-          <fieldset className="auth__form-group">
-            <label className="auth__form-label" htmlFor="username">
-              Password
-            </label>
-            <input
-              onChange={this.handleChange}
-              name="password"
-              value={password}
-              className={`auth__form-control ${
-                errors.password && "auth__error"
-              }`}
-              type="password"
-              placeholder="Enter password"
-              required
-            />
-          </fieldset>
-          {errors.password ? (
-            <span className="auth__error-msg">{errors.password}</span>
-          ) : (
-            ""
-          )}
-          <button type="submit" className="btn-large">
-            {isRegistering ? <Spinner /> : "Sign up"}
-          </button>
-        </form>
+        <div className="container">
+          <h1 className="auth__heading">Sign up</h1>
+          <p className="auth__link">
+            <Link to="/login">Have an account?</Link>
+          </p>
+          <p className="auth__server-error">{validationError}</p>
+          <p className="auth__server-error">{requestError}</p>
+          <form onSubmit={this.handleSubmit} className="auth__form">
+            <fieldset className="auth__form-group">
+              <label className="auth__form-label" htmlFor="name">
+                Full Name
+              </label>
+              <input
+                id="name"
+                onChange={this.handleChange}
+                name="name"
+                value={name}
+                className={`auth__form-control ${errors.name && "auth__error"}`}
+                type="text"
+                placeholder="Enter name"
+                required
+              />
+            </fieldset>
+            {errors.name ? (
+              <span className="auth__error-msg">{errors.name}</span>
+            ) : (
+              ""
+            )}
+            <fieldset className="auth__form-group">
+              <label className="auth__form-label" htmlFor="username">
+                Username
+              </label>
+              <input
+                id="username"
+                onChange={this.handleChange}
+                name="username"
+                value={username}
+                className={`auth__form-control ${
+                  errors.username && "auth__error"
+                }`}
+                type="text"
+                placeholder="Enter username"
+                required
+              />
+            </fieldset>
+            {errors.username ? (
+              <span className="auth__error-msg">{errors.username}</span>
+            ) : (
+              ""
+            )}
+            <fieldset className="auth__form-group">
+              <label className="auth__form-label" htmlFor="username">
+                Email
+              </label>
+              <input
+                onChange={this.handleChange}
+                name="email"
+                value={email}
+                className={`auth__form-control ${
+                  errors.email && "auth__error"
+                }`}
+                type="email"
+                placeholder="Enter email"
+                required
+              />
+            </fieldset>
+            {errors.email ? (
+              <span className="auth__error-msg">{errors.email}</span>
+            ) : (
+              ""
+            )}
+            <fieldset className="auth__form-group">
+              <label className="auth__form-label" htmlFor="username">
+                Password
+              </label>
+              <input
+                onChange={this.handleChange}
+                name="password"
+                value={password}
+                className={`auth__form-control ${
+                  errors.password && "auth__error"
+                }`}
+                type="password"
+                placeholder="Enter password"
+                required
+              />
+            </fieldset>
+            {errors.password ? (
+              <span className="auth__error-msg">{errors.password}</span>
+            ) : (
+              ""
+            )}
+            <button type="submit" className="btn-large">
+              {isRegistering ? <Spinner /> : "Sign up"}
+            </button>
+          </form>
+        </div>
       </section>
     );
   }

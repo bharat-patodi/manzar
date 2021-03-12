@@ -19,7 +19,7 @@ Modular Classes
 .container {
   max-width: 125ch;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 0 2rem;
 }
 
 .full-height {
@@ -32,7 +32,6 @@ Modular Classes
   border: none;
   font-size: 1.1rem;
   cursor: pointer;
-  margin-right: 1rem;
   padding: 0.5rem 1rem;
   color: darken($secondary-color, 50%);
   &:hover {
@@ -53,6 +52,16 @@ Modular Classes
     font-weight: 400;
     color: darken(gray, 10%);
   }
+}
+
+.standard-btn:hover {
+  background: rgba($secondary-color, 0.9);
+}
+
+.btn-large {
+  @extend .standard-btn;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.3rem;
 }
 
 .active {

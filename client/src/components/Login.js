@@ -79,62 +79,61 @@ class Login extends Component {
 
     return (
       <section className="full-height auth">
-        <h1 className="auth__heading">Sign In</h1>
-        <p className="auth__link">
-          <Link to="/register">Need an account?</Link>
-        </p>
-        <p className="auth__server-error">{validationError}</p>
-        <p className="auth__server-error">{requestError}</p>
-        <form onSubmit={this.handleSubmit} className="auth__form">
-          <fieldset className="auth__form-group">
-            <label className="auth__form-label" htmlFor="username">
-              Email
-            </label>
-            <input
-              onChange={this.handleChange}
-              name="email"
-              value={email}
-              className={`auth__form-control ${errors.email && "auth__error"}`}
-              type="email"
-              placeholder="Enter email"
-              required
-            />
+        <div className="container">
+          <h1 className="auth__heading">Sign In</h1>
+          <p className="auth__link">
+            <Link to="/register">Need an account?</Link>
+          </p>
+          <p className="auth__server-error">{validationError}</p>
+          <p className="auth__server-error">{requestError}</p>
+          <form onSubmit={this.handleSubmit} className="auth__form">
+            <fieldset className="auth__form-group">
+              <label className="auth__form-label" htmlFor="username">
+                Email
+              </label>
+              <input
+                onChange={this.handleChange}
+                name="email"
+                value={email}
+                className={`auth__form-control ${
+                  errors.email && "auth__error"
+                }`}
+                type="email"
+                placeholder="Enter email"
+                required
+              />
+            </fieldset>
             {errors.email ? (
               <span className="auth__error-msg">{errors.email}</span>
             ) : (
               ""
             )}
-          </fieldset>
-          <fieldset className="auth__form-group">
-            <label className="auth__form-label" htmlFor="username">
-              Password
-            </label>
-            <input
-              onChange={this.handleChange}
-              name="password"
-              value={password}
-              className={`auth__form-control ${
-                errors.password && "auth__error"
-              }`}
-              type="password"
-              placeholder="Enter password"
-              required
-            />
+            <fieldset className="auth__form-group">
+              <label className="auth__form-label" htmlFor="username">
+                Password
+              </label>
+              <input
+                onChange={this.handleChange}
+                name="password"
+                value={password}
+                className={`auth__form-control ${
+                  errors.password && "auth__error"
+                }`}
+                type="password"
+                placeholder="Enter password"
+                required
+              />
+            </fieldset>
             {errors.password ? (
               <span className="auth__error-msg">{errors.password}</span>
             ) : (
               ""
             )}
-          </fieldset>
-          <button type="submit" className="btn-large">
-            {isLogging ? <Spinner /> : "Sign In"}
-          </button>
-         <div>
-         <button type="submit" className="btn-large btn-large-oauth">
-            {isLogging ? <Spinner /> : "Sign In with google"}
-          </button>
-         </div>
-        </form>
+            <button type="submit" className="btn-large">
+              {isLogging ? <Spinner /> : "Sign In"}
+            </button>
+          </form>
+        </div>
       </section>
     );
   }
