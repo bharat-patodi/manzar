@@ -34,7 +34,9 @@ router.post("/login", async (req, res, next) => {
 
 function userInfo(user) {
   return {
+    name: user.name,
     email: user.email,
+    location: user.location,
     username: user.username,
     bio: user.bio,
     image: user.image,
