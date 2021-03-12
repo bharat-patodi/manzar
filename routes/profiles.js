@@ -51,9 +51,11 @@ function profileInfo(user, currentUser) {
     ? currentUser?.followings?.includes(user.id)
     : false;
   return {
-    username: user.username,
-    bio: user.bio,
-    image: user.image,
+    name: user?.name,
+    username: user?.username,
+    location: user?.location,
+    bio: user?.bio,
+    image: user?.image,
     following: isFollowing,
   };
 }
