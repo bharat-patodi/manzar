@@ -16,13 +16,14 @@ Import partials
 @import "partials/header";
 @import "partials/footer";
 @import "partials/fullPageSpinner";
-@import "components/card";
-@import "components/auth";
-@import "components/modal";
-@import "components/editor";
+@import "pages/noMatch";
+@import "pages/card";
+@import "pages/auth";
+@import "pages/modal";
+@import "pages/editor";
 @import "pages/home";
-@import "components/comments";
-@import "components/thumbnails";
+@import "partials/comments";
+@import "partials/thumbnails";
 
 /* ---------------------------------------------------------------
 Project Specific Styles

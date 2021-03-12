@@ -1,9 +1,21 @@
-export default function NoMatch() {
+import { Link } from "react-router-dom";
+
+function NoMatch() {
   return (
-    <section className="container full-height skip-header">
+    <section className="error-page container full-height">
       <center>
-        <h1>404 Page Not Found</h1>
+        <img
+          className="error-page__image"
+          src="/404-error.svg"
+          alt="no match"
+        />
+        <h1>☹️ 404 Page Not Found</h1>
+        <Link className="error-page__link" to="/">
+          Go back to Home Page
+        </Link>
       </center>
     </section>
   );
 }
+
+export default NoMatch;

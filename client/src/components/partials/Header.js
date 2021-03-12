@@ -68,18 +68,27 @@ function AuthHeader(props) {
         </NavLink>
       </li>
       <li>
-        <NavLink className="header__nav-link" to="/editor">
+        <NavLink
+          className="header__nav-link"
+          activeClassName="active"
+          to="/editor"
+        >
           New Portfolio
         </NavLink>
       </li>
       <li>
-        <NavLink className="header__nav-link" to="/settings">
+        <NavLink
+          className="header__nav-link"
+          activeClassName="active"
+          to="/settings"
+        >
           Settings
         </NavLink>
       </li>
       <li>
         <NavLink
           className="header__nav-link avatar-div"
+          activeClassName="active"
           to={`/profiles/${props.user.username}`}
         >
           <img
