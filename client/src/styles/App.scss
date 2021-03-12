@@ -16,8 +16,9 @@ Import partials
 @import "partials/header";
 @import "partials/footer";
 @import "partials/fullPageSpinner";
+@import "partials/loader";
+@import "partials/card";
 @import "pages/noMatch";
-@import "pages/card";
 @import "pages/auth";
 @import "pages/modal";
 @import "pages/editor";
