@@ -84,7 +84,13 @@ router.get("/feed", jwt.verifyToken, async (req, res, next) => {
 router.post("/", jwt.verifyToken, multerUploads, async (req, res, next) => {
   try {
     req.body.author = req.user.id;
-    // console.log(req.file, req.body, req.files);
+    console.log(req.body);
+    if (req.body.stackList) {
+      req.body.stackList = JSON.parse(req.body.stackList);
+    }
+    if (req.body.tagList) {
+      req.body.tagList = JSON.parse(req.body.tagList);
+    }
     if (req.file) {
       const file = dataUri(req).content;
       return uploader

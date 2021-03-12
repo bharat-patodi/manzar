@@ -54,8 +54,8 @@ class AddPortfolio extends Component {
     const formData = new FormData();
     formData.append("url", url);
     formData.append("description", description);
-    formData.append("tagList", tagList);
-    formData.append("stackList", stackList);
+    formData.append("tagList", JSON.stringify(tagList));
+    formData.append("stackList", JSON.stringify(stackList));
     formData.append("type", type);
     formData.append("image", imageFile);
 

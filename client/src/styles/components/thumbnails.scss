@@ -1,0 +1,30 @@
+.thumbnails-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(221px, 1fr));
+  grid-gap: 40px;
+  margin-top: 16px;
+
+  .thumbnails-list-items {
+    box-shadow: 0px 0px 6px 0px #999;
+    border-radius: 8px;
+    cursor: pointer;
+    &:hover {
+      background-color: #e7e7e9;
+    }
+    .thumbnails {
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+    }
+    .thumbnail-portfolio-title {
+      padding: 0.5rem 0.8rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+    }
+  }
+}

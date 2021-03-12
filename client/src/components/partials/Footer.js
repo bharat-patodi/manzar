@@ -7,7 +7,7 @@ function Footer() {
       <nav>
         <ul>
           <li>
-            <Link>Twiter</Link>
+            <Link>Twitter</Link>
           </li>
           <li>
             <Link>Facebook</Link>
