@@ -114,23 +114,6 @@
       font-size: 1rem;
       line-height: 2rem;
     }
-    .user-link,
-    .user-follow {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
-      color: #0d0c22;
-      text-decoration: underline;
-    }
-
-    .user-follow {
-      text-decoration: none;
-      margin-left: 0.5rem;
-
-      &:hover {
-        color: #ea4c89;
-      }
-    }
   }
 
   &__header-actions {
@@ -138,6 +121,23 @@
   }
 }
 
+.user-link,
+.user-follow {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #0d0c22;
+  text-decoration: underline;
+}
+
+.user-follow {
+  text-decoration: none;
+  margin-left: 0.5rem;
+
+  &:hover {
+    color: #ea4c89;
+  }
+}
 .user-avatar {
   margin-right: 1rem;
   width: 48px;

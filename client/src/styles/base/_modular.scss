@@ -32,6 +32,12 @@ Modular Classes
   min-height: calc(100vh - 5rem);
 }
 
+button {
+  border: none;
+  outline: none;
+  display: inline-block;
+}
+
 .standard-btn {
   background-color: $secondary-color;
   border-radius: 0.25rem;

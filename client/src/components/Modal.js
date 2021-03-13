@@ -88,19 +88,24 @@ class Modal extends React.Component {
                           {portfolio.title || "Personal portfolio website"}
                         </h1>
                         <div className="flex">
-                          <a className="user-link" href="/profile">
-                            {portfolio.author.name}
-                          </a>
-                          <a className="user-follow" href="/profile/follow">
-                            Follow
-                          </a>
+                          <Link to={`/profiles/${portfolio.author.username}`}>
+                            <h4 className="user-link">
+                              {portfolio.author.name}
+                            </h4>
+                          </Link>
+
+                          <Link
+                            to={`/profiles/${portfolio.author.username}/follow`}
+                          >
+                            <span className="user-follow">Follow</span>
+                          </Link>
                         </div>
                       </div>
                     </div>
                     <div className="user-info__header-actions">
-                      <a className="btn" href={portfolio.url}>
-                        Portfolio
-                      </a>
+                      <Link to={portfolio.url}>
+                        <button className="btn">Portfolio</button>
+                      </Link>
                       <a className="btn" href="/profile">
                         🖤 {portfolio.favoritesCount}
                       </a>
@@ -145,24 +150,22 @@ class Modal extends React.Component {
               <section className="user-details-section">
                 <div className="user-avatar-container flex">
                   <span className="user-avatar-line"></span>
-                  <a title={portfolio.author.name} href="/profile">
+                  <Link to={`/profiles/${portfolio.author.username}`}>
                     <img
-                      className="photo"
+                      className="user-avatar"
                       src={
-                        portfolio.image ||
-                        "https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707"
+                        !portfolio.image
+                          ? "https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707"
+                          : portfolio.image
                       }
                       alt="user-profile-avatar"
                     ></img>
-                  </a>
+                  </Link>
                   <span className="user-avatar-line"></span>
                 </div>
-                <a
-                  className="user-link"
-                  href={`/profiles/${portfolio.author.username}`}
-                >
-                  {portfolio.author.name}
-                </a>
+                <Link to={`/profiles/${portfolio.author.username}`}>
+                  <h4 className="user-link">{portfolio.author.name}</h4>
+                </Link>
                 <div className="user-bio">{portfolio.author.bio}</div>
               </section>
 
