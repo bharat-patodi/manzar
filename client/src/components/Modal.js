@@ -53,7 +53,7 @@ class Modal extends React.Component {
     const { user } = this.props;
 
     if (error) {
-      return <p className="fetch-api-error">{error}</p>;
+      return <p className="api-fetch-error">{error}</p>;
     }
     if (!portfolio) {
       return <Spinner />;
@@ -72,15 +72,17 @@ class Modal extends React.Component {
                 <div className="modal__user">
                   <div className="user-info flex-between">
                     <div className="user-info__container">
-                      <img
-                        className="user-avatar"
-                        src={
-                          !portfolio.image
-                            ? "https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707"
-                            : portfolio.image
-                        }
-                        alt="user-profile-avatar"
-                      ></img>
+                      <Link to={`/profiles/${portfolio.author.username}`}>
+                        <img
+                          className="user-avatar"
+                          src={
+                            !portfolio.image
+                              ? "https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707"
+                              : portfolio.image
+                          }
+                          alt="user-profile-avatar"
+                        ></img>
+                      </Link>
                       <div className="user-info__header-details">
                         <h1 className="portfolio-title">
                           {portfolio.title || "Personal portfolio website"}
@@ -164,9 +166,9 @@ class Modal extends React.Component {
                 <div className="user-bio">{portfolio.author.bio}</div>
               </section>
 
-              <section className="more-by-user-section">
-                <Thumbnails />
-              </section>
+              {/* <section className="more-by-user-section">
+                <Thumbnails portfolio={portfolio} />
+              </section> */}
             </div>
           </div>
         </div>
