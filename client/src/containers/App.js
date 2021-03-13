@@ -18,6 +18,7 @@ class App extends Component {
     isLoggedIn: false,
     user: null,
     isVerifying: true,
+    isModalOpen: false,
   };
   updateUser = (user) => {
     this.setState({ isLoggedIn: true, user, isVerifying: false });
@@ -27,6 +28,10 @@ class App extends Component {
     this.setState({ isLoggedIn: false, user: null });
     localStorage.setItem(LOCAL_STORAGE_KEY, "");
   };
+
+  openModal = () => this.setState({ isModalOpen: true });
+  closeModal = () => this.setState({ isModalOpen: false });
+
   componentDidMount() {
     const token = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (token) {
@@ -54,7 +59,7 @@ class App extends Component {
     }
   }
   render() {
-    const { isLoggedIn, user, isVerifying } = this.state;
+    const { isLoggedIn, user, isVerifying, isModalOpen } = this.state;
 
     if (isVerifying) {
       return <FullPageSpinner />;
@@ -65,12 +70,20 @@ class App extends Component {
         <Header isLoggedIn={isLoggedIn} user={user} />
         {isLoggedIn ? (
           <AuthenticatedApp
+            isModalOpen={isModalOpen}
+            openModal={this.openModal}
+            closeModal={this.closeModal}
             user={user}
             updateUser={this.updateUser}
             deleteUser={this.deleteUser}
           />
         ) : (
-          <UnAuthenticatedApp updateUser={this.updateUser} />
+          <UnAuthenticatedApp
+            updateUser={this.updateUser}
+            isModalOpen={isModalOpen}
+            openModal={this.openModal}
+            closeModal={this.closeModal}
+          />
         )}
         <Footer />
       </>
@@ -82,7 +95,11 @@ function AuthenticatedApp(props) {
   return (
     <Switch>
       <Route path="/" exact>
-        <Home />
+        <Home
+          isModalOpen={props.isModalOpen}
+          openModal={props.openModal}
+          closeModal={props.closeModal}
+        />
       </Route>
       <Route path="/profiles/:username">
         <Profile user={props.user} />
@@ -118,9 +135,7 @@ function UnAuthenticatedApp(props) {
       <Route path="/editor">
         <AddPortfolio />
       </Route>
-      <Route path="/portfolios/:id">
-        <Modal user={props.user} />
-      </Route>
+      <Route path="/portfolios/:id" component={Modal} />
       <Route path="*">
         <NoMatch />
       </Route>

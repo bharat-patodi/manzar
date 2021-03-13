@@ -1,4 +1,9 @@
-export default function Comments() {
+import React from "react";
+import { Link, withRouter } from "react-router-dom";
+// import { PORTFOLIOS_URL, LOCAL_STORAGE_KEY } from "../utility/constants";
+// import Spinner from "./partials/Spinner";
+
+function Comments() {
   return (
     <>
       <div className="comment-container">
@@ -74,3 +79,5 @@ export default function Comments() {
     </>
   );
 }
+
+export default withRouter(Comments);

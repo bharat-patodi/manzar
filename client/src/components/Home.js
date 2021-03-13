@@ -6,7 +6,7 @@ class Home extends React.Component {
     super(props);
     this.state = {
       portfolios: [],
-      isModalOpen: false,
+      // isModalOpen: false,
       tags: [],
       users: [],
       activeTag: "",
@@ -34,14 +34,14 @@ class Home extends React.Component {
             portfolios: res.portfolios,
             tags: tags,
             users: users,
-          },
-          () => console.log(this.state)
+          }
+          // () => console.log(this.state)
         );
       });
   }
 
-  openModal = () => this.setState({ isModalOpen: true });
-  closeModal = () => this.setState({ isModalOpen: false });
+  // openModal = () => this.setState({ isModalOpen: true });
+  // closeModal = () => this.setState({ isModalOpen: false });
 
   render() {
     if (this.state.portfolios.length === 0) return <p>Loading...</p>;
@@ -81,9 +81,11 @@ class Home extends React.Component {
                 <Card
                   prominentImage="https://images.unsplash.com/photo-1603539947678-cd3954ed515d?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80"
                   author={portfolio.author.username}
-                  isModalOpen={this.state.isModalOpen}
-                  openModal={this.openModal}
-                  closeModal={this.closeModal}
+                  image={portfolio.image}
+                  id={portfolio.id}
+                  isModalOpen={this.props.isModalOpen}
+                  openModal={this.props.openModal}
+                  closeModal={this.props.closeModal}
                 />
               );
             })}
