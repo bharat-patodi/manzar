@@ -8,15 +8,24 @@
   .user-comment {
     padding: 1rem;
     margin-bottom: 1rem;
+    align-items: unset;
 
     form {
       width: 85%;
 
-      input {
+      input,
+      textarea {
         border-radius: 8px;
+        border: 1px solid #999;
         outline: none;
         padding: 0.5rem 0.8rem;
-        width: 100%;
+        width: 90%;
+      }
+
+      button {
+        outline: none;
+        border: none;
+        margin-top: 0.5rem;
       }
     }
   }

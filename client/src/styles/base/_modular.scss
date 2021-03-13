@@ -89,8 +89,13 @@ Modular Classes
   }
 }
 
-.api-error {
+.api-fetch-error {
   font-size: 1.2rem;
-  padding: 10rem 0;
+  padding: 4rem 0;
   text-align: center;
+}
+
+.no-comments {
+  margin-left: 5rem;
+  font-size: 1rem;
 }
