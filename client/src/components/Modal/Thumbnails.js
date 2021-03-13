@@ -3,7 +3,7 @@ function Thumbnails(props) {
     <>
       <div className="more-by-heading flex">
         <h4>More by Masud Rana</h4>
-        <a className="modal-button btn" href="/profile">
+        <a className="btn" href="/profile">
           View Profile
         </a>
       </div>
