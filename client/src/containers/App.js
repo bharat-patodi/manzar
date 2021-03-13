@@ -95,11 +95,7 @@ function AuthenticatedApp(props) {
   return (
     <Switch>
       <Route path="/" exact>
-        <Home
-          isModalOpen={props.isModalOpen}
-          openModal={props.openModal}
-          closeModal={props.closeModal}
-        />
+        <Home />
       </Route>
       <Route path="/profiles/:username">
         <Profile user={props.user} />
