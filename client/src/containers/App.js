@@ -10,6 +10,8 @@ import Login from "../components/Login";
 import AddPortfolio from "../components/AddPortfolio";
 import NoMatch from "../components/NoMatch";
 import { LOCAL_STORAGE_KEY, CURRENT_USER_URL } from "../utility/constants";
+import Profile from "../components/Profile";
+import Modal from "../components/Modal";
 
 class App extends Component {
   state = {
@@ -82,12 +84,12 @@ function AuthenticatedApp(props) {
       <Route path="/" exact>
         <Home />
       </Route>
-      {/* <Route path="/profiles/:username">
+      <Route path="/profiles/:username">
         <Profile user={props.user} />
       </Route>
       <Route path="/portfolios/:id">
-        <SingleArticle user={props.user} />
-      </Route> */}
+        <Modal user={props.user} />
+      </Route>
       <Route path="/editor">
         <AddPortfolio />
       </Route>
@@ -110,12 +112,15 @@ function UnAuthenticatedApp(props) {
       <Route path="/login">
         <Login />
       </Route>
+      <Route path="/profiles/:username">
+        <Profile user={props.user} />
+      </Route>
       <Route path="/editor">
         <AddPortfolio />
       </Route>
-      {/* <Route path="/portfolios/:id">
-        <SingleArticle user={props.user} />
-      </Route> */}
+      <Route path="/portfolios/:id">
+        <Modal user={props.user} />
+      </Route>
       <Route path="*">
         <NoMatch />
       </Route>

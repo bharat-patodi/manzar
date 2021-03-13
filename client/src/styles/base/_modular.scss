@@ -12,6 +12,12 @@ Modular Classes
   justify-content: space-between;
 }
 
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .grid {
   display: grid;
 }
@@ -67,4 +73,18 @@ Modular Classes
   @extend .standard-btn;
   padding: 0.8rem 1.2rem;
   font-size: 1.3rem;
+}
+
+.btn {
+  background: rgba(darken($primary-color, 50%), 0.2);
+  color: #0d0c22;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  margin-right: 0.6rem;
+
+  &:hover {
+    background-color: rgba(darken($primary-color, 50%), 0.3);
+  }
 }

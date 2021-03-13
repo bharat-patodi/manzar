@@ -29,10 +29,10 @@ export default function Comments() {
                 </div>
 
                 <div className="comment-actions">
-                  <a className="modal-button btn" href="/comment/edit">
+                  <a className="btn" href="/comment/edit">
                     Edit
                   </a>
-                  <a className="modal-button btn" href="/comment/delete">
+                  <a className="btn" href="/comment/delete">
                     Delete
                   </a>
                 </div>
@@ -56,10 +56,10 @@ export default function Comments() {
                 </div>
 
                 <div className="comment-actions">
-                  <a className="modal-button btn" href="/comment/edit">
+                  <a className="btn" href="/comment/edit">
                     Edit
                   </a>
-                  <a className="modal-button btn" href="/comment/delete">
+                  <a className="btn" href="/comment/delete">
                     Delete
                   </a>
                 </div>

@@ -36,10 +36,10 @@ function Modal(props) {
                     </div>
                   </div>
                   <div className="user-info__header-actions">
-                    <a className="modal-button btn" href="https://jonny.me/">
+                    <a className="btn" href="https://jonny.me/">
                       Portfolio
                     </a>
-                    <a className="modal-button btn" href="/profile">
+                    <a className="btn" href="/profile">
                       🖤 Like
                     </a>
                   </div>
