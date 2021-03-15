@@ -6,7 +6,7 @@ function NoMatch() {
       <center>
         <img
           className="error-page__image"
-          src="/404-error.svg"
+          src="images/404-error.svg"
           alt="no match"
         />
         <h1>☹️ 404 Page Not Found</h1>

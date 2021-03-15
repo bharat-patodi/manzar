@@ -26,7 +26,7 @@ class Modal extends React.Component {
       },
     };
 
-    fetch(`${PORTFOLIOS_URL}/${id}`, requestOptions)
+    fetch(`${PORTFOLIOS_URL}/${id}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(res.statusText);
@@ -76,9 +76,7 @@ class Modal extends React.Component {
                         <img
                           className="user-avatar"
                           src={
-                            !portfolio.image
-                              ? "https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707"
-                              : portfolio.image
+                            portfolio.image || "http://i.imgur.com/Xzm3mI0.jpg"
                           }
                           alt="user-profile-avatar"
                         ></img>
@@ -153,11 +151,7 @@ class Modal extends React.Component {
                   <Link to={`/profiles/${portfolio.author.username}`}>
                     <img
                       className="user-avatar"
-                      src={
-                        !portfolio.image
-                          ? "https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707"
-                          : portfolio.image
-                      }
+                      src={portfolio.image || "http://i.imgur.com/Xzm3mI0.jpg"}
                       alt="user-profile-avatar"
                     ></img>
                   </Link>

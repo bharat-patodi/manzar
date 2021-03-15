@@ -83,6 +83,7 @@ class App extends Component {
             isModalOpen={isModalOpen}
             openModal={this.openModal}
             closeModal={this.closeModal}
+            user={user}
           />
         )}
         <Footer />
@@ -103,9 +104,6 @@ function AuthenticatedApp(props) {
       <Route path="/portfolios/:id">
         <Modal user={props.user} />
       </Route>
-      <Route path="/editor">
-        <AddPortfolio />
-      </Route>
       <Route path="*">
         <NoMatch />
       </Route>
@@ -125,12 +123,16 @@ function UnAuthenticatedApp(props) {
       <Route path="/login">
         <Login updateUser={props.updateUser} />
       </Route>
-      <Route path="/profiles/:username">
+      {/* <Route path="/profiles/:username">
         <Profile user={props.user} />
-      </Route>
+      </Route> */}
+      <Route path="/profiles/:username" component={Profile} />
       <Route path="/editor">
         <AddPortfolio />
       </Route>
+      {/* <Route path="/portfolios/:id">
+        <Modal user={props.user} />
+      </Route> */}
       <Route path="/portfolios/:id" component={Modal} />
       <Route path="*">
         <NoMatch />
