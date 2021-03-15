@@ -1,3 +1,5 @@
+import { LOCAL_STORAGE_KEY, PROFILE_URL } from "../utility/constants";
+
 function Profiles() {
   return (
     <>
@@ -91,6 +93,37 @@ function Profiles() {
       </div>
     </>
   );
+}
+
+export function updateFollowUser(username, following, updateFollowedState) {
+  let requestOptions;
+  if (!following) {
+    requestOptions = {
+      method: "POST",
+      headers: {
+        authorization: localStorage.getItem(LOCAL_STORAGE_KEY),
+      },
+    };
+  } else {
+    requestOptions = {
+      method: "DELETE",
+      headers: {
+        authorization: localStorage.getItem(LOCAL_STORAGE_KEY),
+      },
+    };
+  }
+  fetch(`${PROFILE_URL}/${username}/follow`, requestOptions)
+    .then(async (res) => {
+      if (!res.ok) {
+        const { errors } = await res.json();
+        return await Promise.reject(errors);
+      }
+      return res.json();
+    })
+    .then(({ profile }) => updateFollowedState(profile))
+    .catch((errors) => {
+      console.log(errors);
+    });
 }
 
 export default Profiles;
