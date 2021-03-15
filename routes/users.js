@@ -37,6 +37,7 @@ function userInfo(user) {
     name: user.name,
     email: user.email,
     location: user.location,
+    availability: user.availability,
     username: user.username,
     bio: user.bio,
     image: user.image,
