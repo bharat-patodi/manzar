@@ -1,5 +1,5 @@
 .profile-wrapper {
-  padding: 10rem 4rem 5rem;
+  padding: 6rem 4rem 3rem 5rem;
 
   .avatar {
     width: 7.5rem;
@@ -32,7 +32,7 @@
       font-size: 1rem;
       font-weight: 400;
       line-height: 1.5rem;
-      margin-bottom: 0.5rem;
+      // margin-bottom: 0.5rem;
     }
 
     .profile-specializations {
@@ -54,7 +54,7 @@
 
 .subnav {
   border-bottom: 1px solid darken($white-color, 5%);
-  padding: 2rem 0;
+  padding: 1rem 0;
 
   ul {
     .subnav-list-item {
@@ -74,7 +74,7 @@
 }
 
 .wrap-inner {
-  padding: 4rem 4.5rem;
+  padding: 1rem 4.5rem;
 
   .about-content {
     .about-content-main {
@@ -145,6 +145,10 @@
   }
 }
 
+.empty {
+  color: $red-color;
+}
+
 // ========= icons=======
 
 .follow-icon {
@@ -154,9 +158,6 @@
   vertical-align: middle;
   margin-top: -3px;
   margin-right: 5px;
-}
-
-.icon {
 }
 
 .mail-icon {

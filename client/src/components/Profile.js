@@ -74,7 +74,7 @@ class Profile extends React.Component {
             <div className="profile-content">
               <h1 className="profile-name">{profileUser?.name}</h1>
               <p className="profile-locality">{profileUser?.location}</p>
-              <p className="profile-specializations">{profileUser?.stack}</p>
+              <p className="profile-bio">{profileUser?.bio}</p>
               <div className="profile-actions">
                 <a className="btn" href="/profiles/follow">
                   <img
@@ -114,26 +114,21 @@ class Profile extends React.Component {
             <div className="about-content container flex">
               <div className="about-content-main">
                 <section className="content-section profile-section-bio">
-                  <h2 className="section-label">Biography</h2>
-                  <p className="empty-bio">
-                    {profileUser?.bio ||
+                  <h2 className="section-label">About Me</h2>
+                  <p className="empty-description">
+                    {profileUser?.description ||
                       `${profileUser?.name} hasn’t added a biography yet 🙁`}
                   </p>
                 </section>
                 <section class="content-section profile-skills">
                   <h2 className="section-label">Skills</h2>
                   <ul className="skills-list flex">
-                    <li class="btn">css</li>
-                    <li class="btn">iphone design</li>
-                    <li class="btn">front-end developer</li>
-                    <li class="btn">web design</li>
-                    <li class="btn">javascript</li>
+                    {profileUser?.stackList.map((stack) => {
+                      return <li class="btn">{stack}</li>;
+                    })}
                   </ul>
                 </section>
-                <section className="content-section profile-status flex">
-                  <span>200 Followers</span>
-                  <span>90 Following</span>
-                </section>
+                <span className="content-section profile-status flex"></span>
               </div>
               <div className="about-content-sidebar">
                 <section className="content-section profile-info-section">
@@ -143,7 +138,9 @@ class Profile extends React.Component {
                       src="/images/location.svg"
                       alt="location"
                     />{" "}
-                    {profileUser?.location}
+                    {profileUser?.location || (
+                      <span className="empty">Not added</span>
+                    )}
                   </p>
                   <p className="info-item created">
                     <img
@@ -152,7 +149,7 @@ class Profile extends React.Component {
                       alt="location"
                     />
                     {`Member since 
-                    ${moment(profileUser.createdAt).format("MMMM YYYY")}`}
+                    ${moment(profileUser?.createdAt).format("MMMM YYYY")}`}
                   </p>
                 </section>
                 <section className="content-section profile-social-section">
@@ -164,8 +161,10 @@ class Profile extends React.Component {
                           className="social-icon"
                           src="/images/linkedin.svg"
                           alt="mail"
-                        />{" "}
-                        linkedin.com/adrienrochet
+                        />
+                        {profileUser?.socialLinks?.linkedin || (
+                          <span className="empty">Not added</span>
+                        )}
                       </a>
                     </li>
                     <li>
@@ -174,18 +173,22 @@ class Profile extends React.Component {
                           className="social-icon"
                           src="/images/twitter.svg"
                           alt="mail"
-                        />{" "}
-                        twitteer.com/adrienrochet
+                        />
+                        {profileUser?.socialLinks?.twitter || (
+                          <span className="empty">Not added</span>
+                        )}
                       </a>
                     </li>
                     <li>
                       <a href="">
                         <img
                           className="social-icon"
-                          src="/images/facebook.svg"
+                          src="/images/github.svg"
                           alt="mail"
-                        />{" "}
-                        facebook.com/adrienrochet
+                        />
+                        {profileUser?.socialLinks?.github || (
+                          <span className="empty">Not added</span>
+                        )}
                       </a>
                     </li>
                   </ul>

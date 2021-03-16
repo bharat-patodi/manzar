@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import Comments from "./partials/Comments";
 import Thumbnails from "./partials/Thumbnails";
 import { PORTFOLIOS_URL, LOCAL_STORAGE_KEY } from "../utility/constants";
-import Spinner from "./partials/Spinner";
+import FullPageSpinner from "./partials/FullPageSpinner";
 
 class Modal extends React.Component {
   constructor(props) {
@@ -56,7 +56,11 @@ class Modal extends React.Component {
       return <p className="api-fetch-error">{error}</p>;
     }
     if (!portfolio) {
-      return <Spinner />;
+      return (
+        <div className="full-height">
+          <FullPageSpinner />
+        </div>
+      );
     }
     return (
       <>

@@ -10,12 +10,15 @@ const userSchema = new mongoose.Schema(
     location: { type: String },
     password: { type: String, required: true },
     bio: String,
+    description: { type: String },
     profileImage: { type: String },
     socialLinks: {
       twitter: { type: mongoose.SchemaTypes.Url, unique: true },
-      facebook: { type: mongoose.SchemaTypes.Url, unique: true },
+      github: { type: mongoose.SchemaTypes.Url, unique: true },
       linkedin: { type: mongoose.SchemaTypes.Url, unique: true },
+      medium: { type: mongoose.SchemaTypes.Url, unique: true },
     },
+    stackList: [{ type: String }],
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }
