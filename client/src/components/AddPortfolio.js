@@ -13,7 +13,6 @@ class AddPortfolio extends Component {
       imageFile: null,
       type: "",
       tagList: [],
-      stackList: [],
       tagInput: "",
       stackInput: "",
       isCreating: false,
@@ -42,20 +41,12 @@ class AddPortfolio extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.setState({ isCreating: true });
-    const {
-      url,
-      description,
-      tagList,
-      imageFile,
-      stackList,
-      type,
-    } = this.state;
+    const { url, description, tagList, imageFile, type } = this.state;
 
     const formData = new FormData();
     formData.append("url", url);
     formData.append("description", description);
     formData.append("tagList", JSON.stringify(tagList));
-    formData.append("stackList", JSON.stringify(stackList));
     formData.append("type", type);
     formData.append("image", imageFile);
 
@@ -89,7 +80,7 @@ class AddPortfolio extends Component {
   handleChange = (event) => {
     let { name, value } = event.target;
     let tags = [];
-    let stacks = [];
+
     console.dir(event);
 
     if (name === "tagInput" && value.includes(",")) {
@@ -101,22 +92,11 @@ class AddPortfolio extends Component {
       value = "";
     }
 
-    if (name === "stackInput" && value.includes(",")) {
-      stacks = value
-        .trim()
-        .split(",")
-        .map((tag) => tag.trim())
-        .filter((val) => val !== "");
-      value = "";
-    }
-
-    this.setState(({ tagList, stackList }) => {
+    this.setState(({ tagList }) => {
       const tagListSet = new Set(tagList.concat(tags));
-      const stackListSet = new Set(stackList.concat(stacks));
       return {
         [name]: value,
         tagList: Array.from(tagListSet),
-        stackList: Array.from(stackListSet),
       };
     });
   };
@@ -125,11 +105,7 @@ class AddPortfolio extends Component {
     tagList = tagList.filter((val) => val !== tag);
     this.setState({ tagList });
   };
-  handleStackCancel = (stack) => {
-    let { stackList } = this.state;
-    stackList = stackList.filter((val) => val !== stack);
-    this.setState({ stackList });
-  };
+
   componentWillUnmount() {
     const fileUrl = this.state.image;
     URL.revokeObjectURL(fileUrl);
@@ -212,7 +188,7 @@ class AddPortfolio extends Component {
                 ))}
               </ul>
             </fieldset>
-            <fieldset className="editor__form-group">
+            {/* <fieldset className="editor__form-group">
               <label className="editor__form-label" htmlFor="stacks">
                 Stacks
               </label>
@@ -238,7 +214,7 @@ class AddPortfolio extends Component {
                   </li>
                 ))}
               </ul>
-            </fieldset>
+            </fieldset> */}
             <fieldset className="editor__form-group">
               <label className="editor__form-label" htmlFor="type">
                 Portfolio type

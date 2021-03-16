@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import Comments from "./partials/Comments";
+import { updateFollowUser } from "./Profile";
 // import Thumbnails from "./partials/Thumbnails";
 import { PORTFOLIOS_URL, LOCAL_STORAGE_KEY } from "../utility/constants";
-import Spinner from "./partials/Spinner";
-import { updateFollowUser } from "./Profile";
+import FullPageSpinner from "./partials/FullPageSpinner";
 
 class Modal extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class Modal extends React.Component {
       },
     };
 
-    fetch(`${PORTFOLIOS_URL}/${id}`, requestOptions)
+    fetch(`${PORTFOLIOS_URL}/${id}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(res.statusText);
@@ -78,7 +78,7 @@ class Modal extends React.Component {
   };
 
   closeModal = () => {
-    this.props.history.push("/");
+    this.props.history.goBack();
   };
 
   render() {
@@ -89,7 +89,11 @@ class Modal extends React.Component {
       return <p className="api-fetch-error">{error}</p>;
     }
     if (!portfolio) {
-      return <Spinner />;
+      return (
+        <div className="full-height">
+          <FullPageSpinner />
+        </div>
+      );
     }
     return (
       <>
@@ -109,9 +113,7 @@ class Modal extends React.Component {
                         <img
                           className="user-avatar"
                           src={
-                            !portfolio.image
-                              ? "https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707"
-                              : portfolio.image
+                            portfolio.image || "http://i.imgur.com/Xzm3mI0.jpg"
                           }
                           alt="user-profile-avatar"
                         ></img>
@@ -127,21 +129,30 @@ class Modal extends React.Component {
                             </h4>
                           </Link>
 
-                          <Link
-                            to={`/profiles/${portfolio.author.username}/follow`}
+                          <button
+                            onClick={() =>
+                              this.handleFollowClick(portfolio.author)
+                            }
+                            className="follow-user"
                           >
-                            <span className="user-follow">Follow</span>
-                          </Link>
+                            {portfolio.author.following ? "Unfollow" : "Follow"}{" "}
+                          </button>
                         </div>
                       </div>
                     </div>
                     <div className="user-info__header-actions">
-                      <Link to={portfolio.url}>
+                      <a href={portfolio.url}>
                         <button className="btn">Portfolio</button>
-                      </Link>
-                      <a className="btn" href="/profile">
-                        🖤 {portfolio.favoritesCount}
                       </a>
+                      <button
+                        onClick={() => this.handleFavoriteClick()}
+                        className={`portfolio-card__btn-fv ${
+                          portfolio.favorited ? "active" : ""
+                        }`}
+                      >
+                        <span className="ion-heart">❤️</span>{" "}
+                        {portfolio.favoritesCount}
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -186,11 +197,7 @@ class Modal extends React.Component {
                   <Link to={`/profiles/${portfolio.author.username}`}>
                     <img
                       className="user-avatar"
-                      src={
-                        !portfolio.image
-                          ? "https://cdn.dribbble.com/users/6047818/avatars/small/84b15dbafef241b1493507776816d4b0.jpg?1600202707"
-                          : portfolio.image
-                      }
+                      src={portfolio.image || "http://i.imgur.com/Xzm3mI0.jpg"}
                       alt="user-profile-avatar"
                     ></img>
                   </Link>

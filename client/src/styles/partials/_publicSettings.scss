@@ -5,35 +5,13 @@
   .form-field {
     padding: 0.8rem 0;
     fieldset {
-      margin: 0.5rem 0;
+      @extend .editor__form-group;
       label {
-        font-size: 1rem;
-        font-weight: 600;
-        line-height: 1.2rem;
-        color: #0d0c22;
-        display: block;
-        margin-bottom: 0.6rem;
+        @extend .editor__form-label;
       }
       input,
       textarea {
-        outline: none;
-        width: 100%;
-        font-size: 1rem;
-        font-weight: 400;
-        height: 2.5rem;
-        letter-spacing: 0.05;
-        padding: 0.8rem 1rem;
-        border-radius: 8px;
-        transition: background-color 200ms ease, outline 200ms ease;
-        border: 1px solid transparent;
-        color: $black-color;
-        background-color: #f3f3f4;
-
-        &:hover {
-          background-color: #fff;
-          border-color: rgba(darken($primary-color, 50%), 0.3);
-          box-shadow: 0 0 0 4px rgba(darken($primary-color, 50%), 0.3);
-        }
+        @extend .editor__form-control;
       }
       textarea {
         height: 8rem;

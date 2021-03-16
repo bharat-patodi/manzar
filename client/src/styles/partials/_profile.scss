@@ -1,16 +1,9 @@
 .profile-wrapper {
-  padding: 10rem 4rem 5rem;
+  padding: 6rem 4rem 3rem 5rem;
 
   .avatar {
-    width: 7.5rem;
-    height: 7.5rem;
-    position: relative;
-    background-color: $primary-color;
-    margin-bottom: 2rem;
-    border-radius: 50%;
-    overflow: hidden;
-
     .profile-avatar {
+      @extend .header__avatar;
       width: 100%;
       height: 100%;
     }
@@ -32,7 +25,7 @@
       font-size: 1rem;
       font-weight: 400;
       line-height: 1.5rem;
-      margin-bottom: 0.5rem;
+      // margin-bottom: 0.5rem;
     }
 
     .profile-specializations {
@@ -42,9 +35,6 @@
 
   .profile-actions {
     margin-top: 1.8rem;
-    a {
-      padding: 0.8rem 1rem;
-    }
   }
 }
 
@@ -54,7 +44,7 @@
 
 .subnav {
   border-bottom: 1px solid darken($white-color, 5%);
-  padding: 2rem 0;
+  padding: 1rem 0;
 
   ul {
     .subnav-list-item {
@@ -74,12 +64,9 @@
 }
 
 .wrap-inner {
-  padding: 4rem 4.5rem;
-
   .about-content {
-    max-width: 1152px;
-    margin: 0 auto;
-
+    padding: 1rem 0;
+    border-top: 1px solid darken($white-color, 5%);
     .about-content-main {
       flex-grow: 1;
       margin-right: 3rem;
@@ -120,7 +107,7 @@
       .profile-social-section {
         ul {
           li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             a {
               display: inline-flex;
               align-items: center;
@@ -146,4 +133,66 @@
     color: #0d0c22;
     margin-bottom: 1rem;
   }
+
+  .skill-btn {
+    padding: 0.3rem 0.5rem;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    background: rgba($black-color, 0.7);
+    color: $white-color;
+  }
+
+  ul {
+    li {
+      margin-right: 0.6rem;
+    }
+  }
+}
+
+.empty {
+  color: $red-color;
+}
+
+// ========= icons=======
+
+.follow-icon {
+  fill: currentColor;
+  height: 1rem;
+  width: 1rem;
+  vertical-align: middle;
+  margin-top: -3px;
+  margin-right: 5px;
+}
+
+.mail-icon {
+  fill: currentColor;
+  height: 1.2rem;
+  width: 1.2rem;
+  vertical-align: middle;
+  margin-top: -3px;
+  margin-right: 5px;
+}
+
+.sidebar-icon {
+  fill: currentColor;
+  height: 1.2rem;
+  width: 1.2rem;
+  margin-right: 5px;
+}
+
+.social-icon {
+  fill: currentColor;
+  height: 1.2rem;
+  width: 1.2rem;
+  margin-right: 9px;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.fav-icon {
+  fill: currentColor;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 5px;
 }

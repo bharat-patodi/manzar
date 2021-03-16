@@ -177,7 +177,7 @@ class Comment extends React.Component {
 }
 
 function Comments(props) {
-  console.log(props);
+  // console.log(props);
   if (props.fetchRequestError) {
     return <p className="api-fetch-error">{props.fetchRequestError}</p>;
   }
@@ -198,24 +198,24 @@ function Comments(props) {
             <div className="user-info flex-between">
               <div className="user-details flex">
                 <Link
-                  to={`/profiles/${comment.author.username}`}
+                  to={`/profiles/${comment?.author?.username}`}
                   className="comment-author"
                 >
                   <img
                     src={
-                      comment.author?.image || "http://i.imgur.com/Xzm3mI0.jpg"
+                      comment?.author?.image || "http://i.imgur.com/Xzm3mI0.jpg"
                     }
                     alt="user-profile-avatar"
                     className="user-avatar"
                   />
                 </Link>
-                <span className="user-name">{comment.author.username}</span>
+                <span className="user-name">{comment?.author?.username}</span>
                 <span className="comment-timestamp">
                   {moment(comment.createdAt).format("dddd, MMMM Do YYYY")}
                 </span>
               </div>
 
-              {props.currentUser.username === comment.author.username ? (
+              {props?.currentUser?.username === comment?.author?.username ? (
                 <div className="comment-actions">
                   <span
                     onClick={() => props.handleDeleteComment(comment.id)}
@@ -229,7 +229,7 @@ function Comments(props) {
               )}
             </div>
             <div className="comment">
-              <p>{comment.body}</p>
+              <p>{comment?.body}</p>
             </div>
           </li>
         ))}

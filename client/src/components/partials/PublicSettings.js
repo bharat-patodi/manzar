@@ -45,6 +45,35 @@ export default function PublicSettings(props) {
           </div>
         </div>
 
+        <div className="skills">
+          <div className="form-field">
+            <fieldset>
+              <label htmlFor="profile_skills">Skills</label>
+              <input
+                id="profile_skills"
+                onChange={props.handleChange}
+                type="text"
+                value={props.skills}
+                name="skills"
+                placeholder="Enter ',' comma to add skills"
+              ></input>
+              <ul className="editor__tag-list">
+                {props.stackList.map((stack, i) => (
+                  <li key={i} className="editor__tag-default">
+                    <span
+                      onClick={() => props.handleStackCancel(stack)}
+                      className="editor__close-round"
+                    >
+                      ×
+                    </span>
+                    <strong>{stack}</strong>
+                  </li>
+                ))}
+              </ul>
+            </fieldset>
+          </div>
+        </div>
+
         <div className="edit-social-media">
           <h3 className="social-media-heading">Social Profiles</h3>
           <div className="form-field">

@@ -60,6 +60,7 @@ function profileInfo(user, currentUser) {
     availability: user.availability,
     bio: user.bio,
     avatar: user.avatar,
+    description: user.description,
     following: isFollowing,
   };
 }

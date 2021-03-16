@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 import PortfolioList from "./partials/PortfolioList";
 import TagList from "./partials/TagList";
 
@@ -28,6 +29,11 @@ class Home extends Component {
         <section className="hero">
           <div className="container">
             <h1>Portfolio is a box of chocolates!</h1>
+            <Link to="/editor">
+              <button className="btn-large standard-btn hero-btn">
+                Add Portfolio
+              </button>
+            </Link>
           </div>
         </section>
 

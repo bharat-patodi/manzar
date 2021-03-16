@@ -17,6 +17,7 @@ class Settings extends Component {
       email: "",
       location: "",
       bio: "",
+      skills: "",
       socials: null,
       avatar: null,
       avatarPreview: null,
@@ -95,9 +96,9 @@ class Settings extends Component {
       name,
       bio,
       socials,
-      avatarPreview,
+      stackList,
     } = this.state;
-    const user = { username, email, location, name, bio, socials };
+    const user = { username, email, location, name, bio, socials, stackList };
     const errors = this.state.errors;
 
     if (!errors.name && !errors.username && !errors.email && !errors.password) {
@@ -146,8 +147,18 @@ class Settings extends Component {
     let { name, value } = target;
     let errors = this.state.errors;
     let socials = {};
+    let stacks = [];
 
     validateUserInfo(value, name, errors);
+
+    if (name === "skills" && value.includes(",")) {
+      stacks = value
+        .trim()
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter((val) => val !== "");
+      value = "";
+    }
 
     switch (name) {
       case "twitter":
@@ -160,10 +171,14 @@ class Settings extends Component {
         break;
     }
 
-    this.setState({
-      [name]: value,
-      socials,
-      errors: errors,
+    this.setState(({ stackList }) => {
+      const stackListSet = new Set(stackList.concat(stacks));
+      return {
+        [name]: value,
+        socials,
+        errors: errors,
+        stackList: Array.from(stackListSet),
+      };
     });
   };
 
@@ -177,6 +192,12 @@ class Settings extends Component {
 
   changeSettings = (activeSetting) => {
     this.setState({ activeSetting: activeSetting });
+  };
+
+  handleStackCancel = (stack) => {
+    let { stackList } = this.state;
+    stackList = stackList.filter((val) => val !== stack);
+    this.setState({ stackList });
   };
 
   componentWillUnmount() {
@@ -203,6 +224,8 @@ class Settings extends Component {
       isUpdatingAvatar,
       avatarUpdateMsg,
       errors,
+      stackList,
+      skills,
     } = this.state;
 
     return (
@@ -254,6 +277,9 @@ class Settings extends Component {
                     location={location}
                     errors={errors}
                     bio={bio}
+                    stackList={stackList}
+                    skills={skills}
+                    handleStackCancel={this.handleStackCancel}
                     socials={socials}
                     name={name}
                     isUpdating={isUpdating}

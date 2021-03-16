@@ -184,14 +184,28 @@ class PortfolioList extends Component {
               />
             </Link>
             <div className="portfolio-card__meta-bottom">
-              <p>📍 {portfolio.author.location ?? "Any where"}</p>
+              <p>
+                <img
+                  className="follow-icon"
+                  src="/images/location.svg"
+                  alt="follow"
+                />{" "}
+                {portfolio.author.location ?? "Any where"}
+              </p>
               <button
                 onClick={() => this.handleFavoriteClick(portfolio.id)}
                 className={`portfolio-card__btn-fv ${
                   portfolio.favorited ? "active" : ""
                 }`}
               >
-                <span className="ion-heart">❤️</span> {portfolio.favoritesCount}
+                <span className="ion-heart">
+                  <img
+                    className="fav-icon"
+                    src="/images/heart.svg"
+                    alt="follow"
+                  />
+                </span>{" "}
+                {portfolio.favoritesCount}
               </button>
             </div>
           </div>

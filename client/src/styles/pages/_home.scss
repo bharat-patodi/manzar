@@ -1,10 +1,19 @@
 .home {
   .hero {
-    padding-top: 10rem;
+    padding-top: 6rem;
     padding-bottom: 5rem;
     text-align: center;
     background-color: $primary-color;
     width: 100%;
+
+    h1 {
+      margin-bottom: 2rem;
+    }
+
+    .hero-btn {
+      padding: 1.2rem 1.5rem;
+      font-size: 1.6rem;
+    }
   }
   .dashboard {
     padding-top: 1rem;
@@ -30,18 +39,19 @@
     border-color: $secondary-color;
   }
   &__portfolios {
-    width: 75%;
+    width: 70%;
     border-right: 1px solid rgba($black-color, 0.3);
     border-left: 1px solid rgba($black-color, 0.3);
   }
   &__sidebar {
-    width: 25%;
-    padding: 0 1rem;
+    width: 28%;
+    margin-left: 2rem;
     position: sticky;
     top: 1rem;
   }
   &__tag-container {
-    background: darken($primary-color, 10%);
+    // background: darken($primary-color, 10%);
+    box-shadow: 0px 0px 13px 0px darken($primary-color, 10%);
     border-radius: 4px;
     .heading {
       border-radius: 4px 4px 0 0;
@@ -54,7 +64,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    padding: 0.7rem;
+    padding: 1rem 0.8rem;
     .tag {
       padding: 0.3rem 0.5rem;
       border-radius: 2px;

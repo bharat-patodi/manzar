@@ -118,10 +118,10 @@ function UnAuthenticatedApp(props) {
         <Home />
       </Route>
       <Route path="/register">
-        <Register updateUser={props.updateUser} />
+        <Register />
       </Route>
       <Route path="/login">
-        <Login updateUser={props.updateUser} />
+        <Login />
       </Route>
       <Route path="/profiles/:username">
         <Profile user={props.user} />
@@ -129,7 +129,9 @@ function UnAuthenticatedApp(props) {
       <Route path="/editor">
         <AddPortfolio />
       </Route>
-      <Route path="/portfolios/:id" component={Modal} />
+      <Route path="/portfolios/:id">
+        <Modal user={props.user} />
+      </Route>
       <Route path="*">
         <NoMatch />
       </Route>

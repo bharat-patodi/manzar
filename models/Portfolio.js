@@ -4,7 +4,6 @@ var Schema = mongoose.Schema;
 var portfolioSchema = new Schema(
   {
     url: { type: String, required: true },
-    description: { type: String },
     type: { type: String },
     image: { type: String },
     tagList: [{ type: String }],
