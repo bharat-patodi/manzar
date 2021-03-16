@@ -3,7 +3,7 @@ import "../styles/App.scss";
 import Header from "../components/partials/Header";
 import Footer from "../components/partials/Footer";
 import FullPageSpinner from "../components/partials/FullPageSpinner";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import Home from "../components/Home";
 import Register from "../components/Register";
 import Login from "../components/Login";
@@ -61,6 +61,7 @@ class App extends Component {
   }
   render() {
     const { isLoggedIn, user, isVerifying, isModalOpen } = this.state;
+    const { pathname } = this.props.location;
 
     if (isVerifying) {
       return <FullPageSpinner />;
@@ -87,7 +88,7 @@ class App extends Component {
             closeModal={this.closeModal}
           />
         )}
-        <Footer />
+        {pathname === "/" ? null : <Footer />}
       </>
     );
   }
@@ -144,4 +145,4 @@ function UnAuthenticatedApp(props) {
   );
 }
 
-export default App;
+export default withRouter(App);
