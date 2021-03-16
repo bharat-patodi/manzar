@@ -1,0 +1,70 @@
+.settings-btn {
+  border: none;
+  margin: 4px 2px;
+  outline: none;
+  padding: 0.8rem 1rem;
+}
+
+.edit-public-profile {
+  width: 70%;
+  margin-top: 0.5rem;
+
+  .form-field {
+    padding: 0.8rem 0;
+    fieldset {
+      margin: 0.5rem 0;
+      label {
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.2rem;
+        color: #0d0c22;
+        display: block;
+        margin-bottom: 0.6rem;
+      }
+      input,
+      textarea {
+        outline: none;
+        width: 100%;
+        font-size: 1rem;
+        font-weight: 400;
+        height: 2.5rem;
+        letter-spacing: 0.05;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        transition: background-color 200ms ease, outline 200ms ease;
+        border: 1px solid transparent;
+        color: $black-color;
+        background-color: #f3f3f4;
+
+        &:hover {
+          background-color: #fff;
+          border-color: rgba(darken($primary-color, 50%), 0.3);
+          box-shadow: 0 0 0 4px rgba(darken($primary-color, 50%), 0.3);
+        }
+      }
+      textarea {
+        height: 8rem;
+      }
+    }
+  }
+}
+
+.edit-social-media,
+.account-section {
+  margin-top: 2rem;
+
+  .form-field {
+    padding: 0.5rem 0;
+  }
+
+  .social-media-heading,
+  .account-section-heading {
+    border-bottom: 1px solid #dbdbde;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+    color: #6e6d7a;
+    font-size: 0.9rem;
+  }
+}
