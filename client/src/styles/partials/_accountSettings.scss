@@ -1,0 +1,12 @@
+.account-section {
+  .wrapper {
+    .sign-out {
+      color: $white-color;
+      background-color: $red-color;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
