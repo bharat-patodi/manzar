@@ -37,10 +37,12 @@ function userInfo(user) {
     name: user.name,
     email: user.email,
     location: user.location,
+    socials: user.socials,
+    stackList: user.stackList,
     availability: user.availability,
     username: user.username,
     bio: user.bio,
-    image: user.image,
+    avatar: user.avatar,
   };
 }
 

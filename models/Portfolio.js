@@ -8,7 +8,6 @@ var portfolioSchema = new Schema(
     type: { type: String },
     image: { type: String },
     tagList: [{ type: String }],
-    stackList: [{ type: String }],
     favorites: [{ type: Schema.Types.ObjectId, ref: "User" }],
     comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
     author: { type: Schema.Types.ObjectId, required: true, ref: "User" },

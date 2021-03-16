@@ -54,10 +54,12 @@ function profileInfo(user, currentUser) {
     name: user.name,
     email: user.email,
     username: user.username,
+    socials: user.socials,
+    stackList: user.stackList,
     location: user.location,
     availability: user.availability,
     bio: user.bio,
-    image: user.image,
+    avatar: user.avatar,
     following: isFollowing,
   };
 }

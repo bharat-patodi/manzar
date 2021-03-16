@@ -92,7 +92,7 @@ function AuthHeader(props) {
           to={`/profiles/${props.user.username}`}
         >
           <img
-            src={props.user.image || "http://i.imgur.com/Xzm3mI0.jpg"}
+            src={props.user.avatar || "http://i.imgur.com/Xzm3mI0.jpg"}
             className="header__avatar"
             alt="user avatar"
           />

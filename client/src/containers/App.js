@@ -30,9 +30,6 @@ class App extends Component {
     localStorage.setItem(LOCAL_STORAGE_KEY, "");
   };
 
-  openModal = () => this.setState({ isModalOpen: true });
-  closeModal = () => this.setState({ isModalOpen: false });
-
   componentDidMount() {
     const token = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (token) {
@@ -60,7 +57,7 @@ class App extends Component {
     }
   }
   render() {
-    const { isLoggedIn, user, isVerifying, isModalOpen } = this.state;
+    const { isLoggedIn, user, isVerifying } = this.state;
     const { pathname } = this.props.location;
 
     if (isVerifying) {
@@ -72,21 +69,12 @@ class App extends Component {
         <Header isLoggedIn={isLoggedIn} user={user} />
         {isLoggedIn ? (
           <AuthenticatedApp
-            isModalOpen={isModalOpen}
-            openModal={this.openModal}
-            closeModal={this.closeModal}
             user={user}
             updateUser={this.updateUser}
             deleteUser={this.deleteUser}
           />
         ) : (
-          <UnAuthenticatedApp
-            user={user}
-            updateUser={this.updateUser}
-            isModalOpen={isModalOpen}
-            openModal={this.openModal}
-            closeModal={this.closeModal}
-          />
+          <UnAuthenticatedApp user={user} updateUser={this.updateUser} />
         )}
         {pathname === "/" ? null : <Footer />}
       </>
@@ -110,7 +98,11 @@ function AuthenticatedApp(props) {
         <AddPortfolio />
       </Route>
       <Route path="/settings">
-        <Settings />
+        <Settings
+          user={props.user}
+          updateUser={props.updateUser}
+          deleteUser={props.deleteUser}
+        />
       </Route>
       <Route path="*">
         <NoMatch />

@@ -85,9 +85,7 @@ router.post("/", jwt.verifyToken, multerUploads, async (req, res, next) => {
   try {
     req.body.author = req.user.id;
     console.log(req.body);
-    if (req.body.stackList) {
-      req.body.stackList = JSON.parse(req.body.stackList);
-    }
+
     if (req.body.tagList) {
       req.body.tagList = JSON.parse(req.body.tagList);
     }
@@ -109,6 +107,7 @@ router.post("/", jwt.verifyToken, multerUploads, async (req, res, next) => {
         })
         .catch((err) => {
           console.log(err);
+          return next(err);
         });
     }
 
