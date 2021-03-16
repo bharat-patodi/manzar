@@ -89,14 +89,7 @@ class Profile extends React.Component {
               <p className="profile-locality">{profileUser?.location}</p>
               <p className="profile-bio">{profileUser?.bio}</p>
               <div className="profile-actions">
-                {/* <a className="btn" href="/profiles/follow">
-                  <img
-                    className="follow-icon"
-                    src="/images/plus.svg"
-                    alt="follow"
-                  />
-                  Follow
-                </a> */}
+                <div className="toggle"></div>
                 <button
                   onClick={() => this.handleFollowClick(profileUser)}
                   className="standard-btn"
@@ -122,18 +115,13 @@ class Profile extends React.Component {
             </div>
           </section>
           <section className="container">
-            {/* <div className="subnav-container"> */}
             <nav className="subnav">
               <ul className="subnav-list flex">
-                {/* <li className="subnav-list-item">
-                  <a href="/">Collections</a>
-                </li> */}
                 <li className="subnav-list-item">
                   <a href="/">About</a>
                 </li>
               </ul>
             </nav>
-            {/* </div> */}
           </section>
 
           <section className="wrap-inner">
