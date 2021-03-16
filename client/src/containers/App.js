@@ -86,6 +86,7 @@ class App extends Component {
             isModalOpen={isModalOpen}
             openModal={this.openModal}
             closeModal={this.closeModal}
+            user={user}
           />
         )}
         {pathname === "/" ? null : <Footer />}
@@ -131,12 +132,16 @@ function UnAuthenticatedApp(props) {
       <Route path="/login">
         <Login updateUser={props.updateUser} />
       </Route>
-      <Route path="/profiles/:username">
+      {/* <Route path="/profiles/:username">
         <Profile user={props.user} />
-      </Route>
+      </Route> */}
+      <Route path="/profiles/:username" component={Profile} />
       <Route path="/editor">
         <AddPortfolio />
       </Route>
+      {/* <Route path="/portfolios/:id">
+        <Modal user={props.user} />
+      </Route> */}
       <Route path="/portfolios/:id" component={Modal} />
       <Route path="*">
         <NoMatch />

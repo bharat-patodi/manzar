@@ -139,7 +139,7 @@
   }
 }
 .user-avatar {
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -170,11 +170,15 @@
   margin-top: 3rem;
   width: 100%;
   text-align: center;
-}
-
-.user-avatar-line {
-  border: 1px solid #e7e7e9;
-  width: 100%;
+  .user-avatar-container {
+    .user-avatar-line {
+      border: 1px solid #e7e7e9;
+      width: 100%;
+    }
+    .user-avatar {
+      margin: 0 1rem;
+    }
+  }
 }
 
 .photo {

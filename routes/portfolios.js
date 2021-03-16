@@ -288,9 +288,9 @@ function portfolioInfo(portfolio, currentUser) {
   return {
     id: portfolio.id,
     url: portfolio.url,
-    description: portfolio.description,
+    // description: portfolio.description,
     tagList: portfolio.tagList,
-    stackList: portfolio.stackList,
+    // stackList: portfolio.stackList,
     image: portfolio.image,
     author: profileInfo(portfolio.author, currentUser),
     favorited: isFavorite,

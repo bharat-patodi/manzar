@@ -57,7 +57,10 @@ function profileInfo(user, currentUser) {
     location: user.location,
     availability: user.availability,
     bio: user.bio,
-    image: user.image,
+    description: user.description,
+    profileImage: user.profileImage,
+    socialLinks: user.socialLinks,
+    stackList: user.stackList,
     following: isFollowing,
   };
 }

@@ -17,7 +17,7 @@ function Footer(props) {
               <Link to="/">Instagram</Link>
             </li>
             <li>
-              <Link to="https://github.com/bharat-patodi/manzar">Github</Link>
+              <a href="https://github.com/bharat-patodi/manzar">Github</a>
             </li>
             <li>
               <Link to="/">Careers</Link>

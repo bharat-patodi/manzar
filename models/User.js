@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+require("mongoose-type-url");
 const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema(
@@ -10,7 +11,15 @@ const userSchema = new mongoose.Schema(
     availability: { type: Boolean, default: true },
     password: { type: String, required: true },
     bio: String,
-    image: String,
+    description: { type: String },
+    profileImage: { type: String },
+    socialLinks: {
+      twitter: { type: mongoose.SchemaTypes.Url, unique: true },
+      github: { type: mongoose.SchemaTypes.Url, unique: true },
+      linkedin: { type: mongoose.SchemaTypes.Url, unique: true },
+      medium: { type: mongoose.SchemaTypes.Url, unique: true },
+    },
+    stackList: [{ type: String }],
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }

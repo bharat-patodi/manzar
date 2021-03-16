@@ -36,6 +36,10 @@
     border: 1px solid $secondary-color;
     padding: 0.3rem;
     cursor: pointer;
+
+    .ion-heart {
+      vertical-align: middle;
+    }
   }
   &__btn-fv.active {
     background: rgba($secondary-color, 0.6);
