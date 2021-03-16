@@ -64,9 +64,9 @@
 }
 
 .wrap-inner {
-  padding: 1rem 4.5rem;
-
   .about-content {
+    padding: 1rem 0;
+    border-top: 1px solid darken($white-color, 5%);
     .about-content-main {
       flex-grow: 1;
       margin-right: 3rem;
@@ -134,9 +134,17 @@
     margin-bottom: 1rem;
   }
 
+  .skill-btn {
+    padding: 0.3rem 0.5rem;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    background: rgba($black-color, 0.7);
+    color: $white-color;
+  }
+
   ul {
     li {
-      margin-right: 0.8rem;
+      margin-right: 0.6rem;
     }
   }
 }

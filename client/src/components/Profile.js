@@ -72,7 +72,7 @@ class Profile extends React.Component {
     // console.log(this.props);
     return (
       <>
-        <div className="profile">
+        <div className="profile container">
           <section className="profile-wrapper flex-center">
             <div className="avatar">
               <img
@@ -87,34 +87,42 @@ class Profile extends React.Component {
             <div className="profile-content">
               <h1 className="profile-name">{profileUser?.name}</h1>
               <p className="profile-locality">{profileUser?.location}</p>
-              <p className="profile-bio">{profileUser?.bio}</p>
+              {/* <p className="profile-bio">{profileUser?.bio}</p> */}
               <div className="profile-actions">
                 <div className="toggle"></div>
-                <button
-                  onClick={() => this.handleFollowClick(profileUser)}
-                  className="standard-btn"
-                >
-                  <img
-                    className="follow-icon"
-                    src="/images/plus.svg"
-                    alt="follow"
-                  />
-                  {profileUser.following ? "Unfollow" : "Follow"}{" "}
-                </button>
-                <button>
-                  <a className="standard-btn" href="mailto:abc@gamil.com">
-                    <img
-                      className="mail-icon"
-                      src="/images/mail.svg"
-                      alt="mail"
-                    />
-                    Hire Me
-                  </a>
-                </button>
+                {profileUser.username === this.props.user.username ? (
+                  <Link className="standard-btn" to="/settings">
+                    Edit profile
+                  </Link>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => this.handleFollowClick(profileUser)}
+                      className="standard-btn"
+                    >
+                      <img
+                        className="follow-icon"
+                        src="/images/plus.svg"
+                        alt="follow"
+                      />
+                      {profileUser.following ? "Unfollow" : "Follow"}{" "}
+                    </button>
+                    <button>
+                      <a className="standard-btn" href="mailto:abc@gamil.com">
+                        <img
+                          className="mail-icon"
+                          src="/images/mail.svg"
+                          alt="mail"
+                        />
+                        Hire Me
+                      </a>
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </section>
-          <section className="container">
+          {/* <section className="container">
             <nav className="subnav">
               <ul className="subnav-list flex">
                 <li className="subnav-list-item">
@@ -122,15 +130,15 @@ class Profile extends React.Component {
                 </li>
               </ul>
             </nav>
-          </section>
+          </section> */}
 
           <section className="wrap-inner">
-            <div className="about-content container flex">
+            <div className="about-content flex">
               <div className="about-content-main">
                 <section className="content-section profile-section-bio">
                   <h2 className="section-label">About Me</h2>
                   <p className="empty-description">
-                    {profileUser?.description ||
+                    {profileUser?.bio ||
                       `${profileUser?.name} hasn’t added a biography yet 🙁`}
                   </p>
                 </section>
@@ -140,7 +148,7 @@ class Profile extends React.Component {
                     {!profileUser?.stackList
                       ? ""
                       : profileUser?.stackList.map((stack) => {
-                          return <li class="standard-btn">{stack}</li>;
+                          return <li class="skill-btn">{stack}</li>;
                         })}
                   </ul>
                 </section>

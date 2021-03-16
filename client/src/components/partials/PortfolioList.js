@@ -148,7 +148,7 @@ class PortfolioList extends Component {
               >
                 <img
                   src={
-                    portfolio.author.image || "http://i.imgur.com/Xzm3mI0.jpg"
+                    portfolio.author.avatar || "http://i.imgur.com/Xzm3mI0.jpg"
                   }
                   alt="avatar"
                 />

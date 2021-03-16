@@ -4,6 +4,8 @@ const router = express.Router();
 const User = require("../models/User");
 const jwt = require("../modules/token");
 const { userInfo } = require("./users");
+const { multerUploadsAvatar, dataUri } = require("../midlewares/multer");
+const { uploader } = require("../config/cloudinary");
 
 // get current user
 router.get("/user", jwt.verifyToken, async (req, res, next) => {
@@ -17,21 +19,51 @@ router.get("/user", jwt.verifyToken, async (req, res, next) => {
 });
 
 // update current user
-router.put("/user", jwt.verifyToken, async (req, res, next) => {
-  try {
-    const updatedUser = await User.findByIdAndUpdate(
-      req.user.id,
-      req.body.user,
-      {
-        new: true,
+router.put(
+  "/user",
+  jwt.verifyToken,
+  multerUploadsAvatar,
+  async (req, res, next) => {
+    console.log(req.file);
+    try {
+      if (req.file) {
+        const file = dataUri(req).content;
+        return uploader
+          .upload(file)
+          .then(async (result) => {
+            var url = result.url;
+
+            const updatedUser = await User.findByIdAndUpdate(
+              req.user.id,
+              { avatar: url },
+              {
+                new: true,
+              }
+            );
+            const token = await jwt.generateJWT(updatedUser);
+            res.status(200).json({ user: { ...userInfo(updatedUser), token } });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
-    );
-    const token = await jwt.generateJWT(updatedUser);
-    res.status(200).json({ user: { ...userInfo(updatedUser), token } });
-  } catch (error) {
-    next(error);
+
+      // simple update
+      const updatedUser = await User.findByIdAndUpdate(
+        req.user.id,
+        req.body.user,
+        {
+          new: true,
+        }
+      );
+      const token = await jwt.generateJWT(updatedUser);
+      res.status(200).json({ user: { ...userInfo(updatedUser), token } });
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
   }
-});
+);
 
 // Get all tags
 router.get("/tags", async (req, res, next) => {

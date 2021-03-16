@@ -27,7 +27,7 @@ class Register extends Component {
     const user = { name, username, email, password };
     const errors = this.state.errors;
 
-    if (!errors.username && !errors.email && !errors.password) {
+    if (!errors.name && !errors.username && !errors.email && !errors.password) {
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
