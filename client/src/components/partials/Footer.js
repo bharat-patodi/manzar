@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Footer() {
+function Footer(props) {
   return (
     <footer className="footer">
       <div className="container flex">
@@ -17,7 +17,7 @@ function Footer() {
               <Link to="/">Instagram</Link>
             </li>
             <li>
-              <Link to="https://github.com/bharat-patodi/manzar">Github</Link>
+              <a href="https://github.com/bharat-patodi/manzar">Github</a>
             </li>
             <li>
               <Link to="/">Careers</Link>

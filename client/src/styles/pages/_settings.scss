@@ -1,0 +1,73 @@
+.profile-setting {
+  width: 825px;
+  margin: 0 auto;
+  padding-top: 4rem;
+  margin-bottom: 5rem;
+
+  .user-profile-header {
+    margin-bottom: 3rem;
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 29px;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .secondary {
+    border-bottom: 1px solid #999;
+    // width: 75%;
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .account-settings {
+      li {
+        padding: 0.4rem 0.8rem;
+        cursor: pointer;
+
+        &:hover {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+}
+
+.main {
+  margin-top: 1rem;
+  align-items: flex-start;
+
+  .avatar-preview {
+    width: 25%;
+    margin-left: 3rem;
+    .user-avatar {
+      width: 10rem;
+      height: 10rem;
+      margin-top: 1.4rem;
+    }
+    form {
+      fieldset {
+        .info {
+          padding: 1rem 0;
+          font-size: 0.85rem;
+          color: #9e9ea7;
+        }
+      }
+    }
+  }
+}
+
+.add-btn {
+  text-align: center;
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.active {
+  color: darken($secondary-color, 10%);
+}

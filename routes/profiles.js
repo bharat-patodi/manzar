@@ -55,6 +55,7 @@ function profileInfo(user, currentUser) {
     email: user.email,
     username: user.username,
     location: user.location,
+    availability: user.availability,
     bio: user.bio,
     description: user.description,
     profileImage: user.profileImage,

@@ -8,6 +8,7 @@ import Home from "../components/Home";
 import Register from "../components/Register";
 import Login from "../components/Login";
 import AddPortfolio from "../components/AddPortfolio";
+import Settings from "../components/Settings";
 import NoMatch from "../components/NoMatch";
 import { LOCAL_STORAGE_KEY, CURRENT_USER_URL } from "../utility/constants";
 import Profile from "../components/Profile";
@@ -79,6 +80,7 @@ class App extends Component {
           />
         ) : (
           <UnAuthenticatedApp
+            user={user}
             updateUser={this.updateUser}
             isModalOpen={isModalOpen}
             openModal={this.openModal}
@@ -103,6 +105,12 @@ function AuthenticatedApp(props) {
       </Route>
       <Route path="/portfolios/:id">
         <Modal user={props.user} />
+      </Route>
+      <Route path="/editor">
+        <AddPortfolio />
+      </Route>
+      <Route path="/settings">
+        <Settings />
       </Route>
       <Route path="*">
         <NoMatch />

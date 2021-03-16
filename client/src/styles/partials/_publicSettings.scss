@@ -1,0 +1,48 @@
+.settings-btn {
+  border: none;
+  margin: 4px 2px;
+  outline: none;
+  padding: 0.8rem 1rem;
+}
+
+.edit-public-profile {
+  width: 70%;
+  margin-top: 0.5rem;
+
+  .form-field {
+    padding: 0.8rem 0;
+    fieldset {
+      @extend .editor__form-group;
+      label {
+        @extend .editor__form-label;
+      }
+      input,
+      textarea {
+        @extend .editor__form-control;
+      }
+      textarea {
+        height: 8rem;
+      }
+    }
+  }
+}
+
+.edit-social-media,
+.account-section {
+  margin-top: 2rem;
+
+  .form-field {
+    padding: 0.5rem 0;
+  }
+
+  .social-media-heading,
+  .account-section-heading {
+    border-bottom: 1px solid #dbdbde;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+    color: #6e6d7a;
+    font-size: 0.9rem;
+  }
+}

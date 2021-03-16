@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import Comments from "./partials/Comments";
-import Thumbnails from "./partials/Thumbnails";
+import { updateFollowUser } from "./Profile";
+// import Thumbnails from "./partials/Thumbnails";
 import { PORTFOLIOS_URL, LOCAL_STORAGE_KEY } from "../utility/constants";
 import FullPageSpinner from "./partials/FullPageSpinner";
 
@@ -48,6 +49,38 @@ class Modal extends React.Component {
     this.fetchData();
   }
 
+  handleFavoriteClick = () => {
+    const { portfolio } = this.state;
+    updateFavoritePortfolio(
+      portfolio.id,
+      portfolio.favorited,
+      this.updateFavoritedState
+    );
+  };
+  handleFollowClick = (author) => {
+    updateFollowUser(
+      author.username,
+      author.following,
+      this.updateFollowedState
+    );
+  };
+  updateFavoritedState = (portfolio) => {
+    this.setState({
+      portfolio,
+    });
+  };
+  updateFollowedState = (profile) => {
+    const portfolio = { ...this.state.portfolio };
+    portfolio.author = profile;
+    this.setState({
+      portfolio,
+    });
+  };
+
+  closeModal = () => {
+    this.props.history.goBack();
+  };
+
   render() {
     const { portfolio, error } = this.state;
     const { user } = this.props;
@@ -66,7 +99,7 @@ class Modal extends React.Component {
       <>
         <div className="overlay">
           <div className="overlay__close-button">
-            <button className="close-btn" onClick={this.props.closeModal}>
+            <button className="close-btn" onClick={this.closeModal}>
               x
             </button>
           </div>
@@ -96,21 +129,30 @@ class Modal extends React.Component {
                             </h4>
                           </Link>
 
-                          <Link
-                            to={`/profiles/${portfolio.author.username}/follow`}
+                          <button
+                            onClick={() =>
+                              this.handleFollowClick(portfolio.author)
+                            }
+                            className="follow-user"
                           >
-                            <span className="user-follow">Follow</span>
-                          </Link>
+                            {portfolio.author.following ? "Unfollow" : "Follow"}{" "}
+                          </button>
                         </div>
                       </div>
                     </div>
                     <div className="user-info__header-actions">
-                      <Link to={portfolio.url}>
+                      <a href={portfolio.url}>
                         <button className="btn">Portfolio</button>
-                      </Link>
-                      <a className="btn" href="/profile">
-                        🖤 {portfolio.favoritesCount}
                       </a>
+                      <button
+                        onClick={() => this.handleFavoriteClick()}
+                        className={`portfolio-card__btn-fv ${
+                          portfolio.favorited ? "active" : ""
+                        }`}
+                      >
+                        <span className="ion-heart">❤️</span>{" "}
+                        {portfolio.favoritesCount}
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -176,6 +218,37 @@ class Modal extends React.Component {
       </>
     );
   }
+}
+
+export function updateFavoritePortfolio(id, isFavorited, updateFavoritedState) {
+  let requestOptions;
+  if (!isFavorited) {
+    requestOptions = {
+      method: "POST",
+      headers: {
+        authorization: localStorage.getItem(LOCAL_STORAGE_KEY),
+      },
+    };
+  } else {
+    requestOptions = {
+      method: "DELETE",
+      headers: {
+        authorization: localStorage.getItem(LOCAL_STORAGE_KEY),
+      },
+    };
+  }
+  fetch(`${PORTFOLIOS_URL}/${id}/favorite`, requestOptions)
+    .then(async (res) => {
+      if (!res.ok) {
+        const { errors } = await res.json();
+        return await Promise.reject(errors);
+      }
+      return res.json();
+    })
+    .then(({ portfolio }) => updateFavoritedState(portfolio))
+    .catch((errors) => {
+      console.log(errors);
+    });
 }
 
 export default withRouter(Modal);

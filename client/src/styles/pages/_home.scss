@@ -1,38 +1,83 @@
 .home {
   .hero {
-    padding-top: 10rem;
+    padding-top: 6rem;
     padding-bottom: 5rem;
     text-align: center;
     background-color: $primary-color;
     width: 100%;
+
+    h1 {
+      margin-bottom: 2rem;
+    }
+
+    .hero-btn {
+      padding: 1.2rem 1.5rem;
+      font-size: 1.6rem;
+    }
   }
   .dashboard {
-    padding: 1rem;
-    &__card-showcase {
-      // margin-top: 10rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      grid-gap: 2rem;
-    }
+    padding-top: 1rem;
   }
-
-  .tag-bar {
-    margin: 1rem;
-    * {
-      margin: 0.1rem;
-    }
-    text-align: center;
+  .container.flex {
+    display: flex;
+    align-items: flex-start;
   }
-
-  .tag {
-    font-size: 0.8rem;
+  &__feed-btns {
+    display: flex;
+    padding-top: 0.5rem;
+    position: sticky;
+    top: 0;
+    background: $white-color;
+    border-bottom: 1px solid rgba($black-color, 0.3);
   }
-
-  .pagination {
-    margin: 1rem;
-  }
-  .page-number {
-    margin: 1rem;
+  &__feed-btn {
+    padding: 0.2rem 0.8rem;
+    border-bottom: 3px solid transparent;
     cursor: pointer;
+  }
+  &__feed-btn.active {
+    border-color: $secondary-color;
+  }
+  &__portfolios {
+    width: 70%;
+    border-right: 1px solid rgba($black-color, 0.3);
+    border-left: 1px solid rgba($black-color, 0.3);
+  }
+  &__sidebar {
+    width: 28%;
+    margin-left: 2rem;
+    position: sticky;
+    top: 1rem;
+  }
+  &__tag-container {
+    // background: darken($primary-color, 10%);
+    box-shadow: 0px 0px 13px 0px darken($primary-color, 10%);
+    border-radius: 4px;
+    .heading {
+      border-radius: 4px 4px 0 0;
+      background: $secondary-color;
+      color: $white-color;
+      padding: 0.5rem 0.7rem;
+    }
+  }
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem 0.8rem;
+    .tag {
+      padding: 0.3rem 0.5rem;
+      border-radius: 2px;
+      font-size: 0.8rem;
+      background: rgba($black-color, 0.7);
+      color: $white-color;
+      cursor: pointer;
+    }
+    .tag:hover {
+      background: rgba($black-color, 0.8);
+    }
+    .tag.active {
+      background: $black-color;
+    }
   }
 }
