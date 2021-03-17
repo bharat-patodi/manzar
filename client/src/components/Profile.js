@@ -1,8 +1,9 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { PROFILE_URL, LOCAL_STORAGE_KEY } from "../utility/constants";
-import Spinner from "./partials/Spinner";
 import moment from "moment";
+import FullPageSpinner from "./partials/FullPageSpinner";
+import Thumbnails from "./partials/Thumbnails";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -55,6 +56,7 @@ class Profile extends React.Component {
     );
   };
   updateFollowedState = (profileUser) => {
+    console.log(profileUser);
     this.setState({
       profileUser,
     });
@@ -64,10 +66,14 @@ class Profile extends React.Component {
     const { profileUser, error } = this.state;
 
     if (error) {
-      return <p className="api-fetch-error">{error}</p>;
+      return <p className="api-fetch-error full-height">{error}</p>;
     }
     if (!profileUser) {
-      return <Spinner />;
+      return (
+        <div className="full-height">
+          <FullPageSpinner />
+        </div>
+      );
     }
     // console.log(this.props);
     return (
@@ -77,9 +83,7 @@ class Profile extends React.Component {
             <div className="avatar">
               <img
                 className="profile-avatar"
-                src={
-                  profileUser?.profileImage || "http://i.imgur.com/Xzm3mI0.jpg"
-                }
+                src={profileUser?.avatar || "http://i.imgur.com/Xzm3mI0.jpg"}
                 alt="profile-avatar"
               ></img>
             </div>
@@ -90,7 +94,7 @@ class Profile extends React.Component {
               {/* <p className="profile-bio">{profileUser?.bio}</p> */}
               <div className="profile-actions">
                 <div className="toggle"></div>
-                {profileUser.username === this.props.user.username ? (
+                {profileUser.username === this.props?.user?.username ? (
                   <Link className="standard-btn" to="/settings">
                     Edit profile
                   </Link>
@@ -152,7 +156,8 @@ class Profile extends React.Component {
                         })}
                   </ul>
                 </section>
-                <span className="content-section profile-status flex"></span>
+                <span className="profile-status flex"></span>
+                <Thumbnails username={profileUser.username} />
               </div>
               <div className="about-content-sidebar">
                 <section className="content-section profile-info-section">

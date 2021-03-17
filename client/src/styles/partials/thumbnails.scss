@@ -2,11 +2,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(221px, 1fr));
   grid-gap: 40px;
-  margin-top: 16px;
+  margin: 1.5rem 0;
 
   .thumbnails-list-items {
-    box-shadow: 0px 0px 6px 0px #999;
-    border-radius: 8px;
+    box-shadow: 0px 1px 6px rgb(201, 200, 200);
+    border-radius: 4px;
     cursor: pointer;
     &:hover {
       background-color: #e7e7e9;

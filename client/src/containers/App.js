@@ -28,6 +28,7 @@ class App extends Component {
   deleteUser = () => {
     this.setState({ isLoggedIn: false, user: null });
     localStorage.setItem(LOCAL_STORAGE_KEY, "");
+    this.props.history.push("/");
   };
 
   componentDidMount() {
@@ -118,10 +119,10 @@ function UnAuthenticatedApp(props) {
         <Home />
       </Route>
       <Route path="/register">
-        <Register />
+        <Register updateUser={props.updateUser} />
       </Route>
       <Route path="/login">
-        <Login />
+        <Login updateUser={props.updateUser} />
       </Route>
       <Route path="/profiles/:username">
         <Profile user={props.user} />
