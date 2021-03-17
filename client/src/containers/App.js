@@ -30,7 +30,6 @@ class App extends Component {
     localStorage.setItem(LOCAL_STORAGE_KEY, "");
     this.props.history.push("/");
   };
-
   componentDidMount() {
     const token = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (token) {

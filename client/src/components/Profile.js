@@ -4,12 +4,14 @@ import { PROFILE_URL, LOCAL_STORAGE_KEY } from "../utility/constants";
 import moment from "moment";
 import FullPageSpinner from "./partials/FullPageSpinner";
 import Thumbnails from "./partials/Thumbnails";
+// import ToggleButton from "react-toggle-button";
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       profileUser: null,
+      toggleActive: false,
       error: "",
     };
   }
@@ -64,6 +66,7 @@ class Profile extends React.Component {
 
   render() {
     const { profileUser, error } = this.state;
+    const borderRadiusStyle = { borderRadius: 8 };
 
     if (error) {
       return <p className="api-fetch-error full-height">{error}</p>;
@@ -91,7 +94,18 @@ class Profile extends React.Component {
             <div className="profile-content">
               <h1 className="profile-name">{profileUser?.name}</h1>
               <p className="profile-locality">{profileUser?.location}</p>
-              {/* <p className="profile-bio">{profileUser?.bio}</p> */}
+              {/* <ToggleButton
+                availability={profileUser.availability}
+                value={this.state.toggleActive || false}
+                thumbStyle={borderRadiusStyle}
+                trackStyle={borderRadiusStyle}
+                onToggle={(toggleActive) => {
+                  this.setState({
+                    toggleActive: !toggleActive,
+                  });
+                }} */}
+              {/* /> */}
+
               <div className="profile-actions">
                 <div className="toggle"></div>
                 {profileUser.username === this.props?.user?.username ? (
@@ -111,16 +125,17 @@ class Profile extends React.Component {
                       />
                       {profileUser.following ? "Unfollow" : "Follow"}{" "}
                     </button>
-                    <button>
-                      <a className="standard-btn" href="mailto:abc@gamil.com">
+
+                    <a href="mailto:abc@gamil.com">
+                      <button className="standard-btn">
                         <img
                           className="mail-icon"
                           src="/images/mail.svg"
                           alt="mail"
                         />
                         Hire Me
-                      </a>
-                    </button>
+                      </button>
+                    </a>
                   </>
                 )}
               </div>
@@ -216,6 +231,18 @@ class Profile extends React.Component {
                           alt="mail"
                         />
                         {profileUser?.socialLinks?.github || (
+                          <span className="empty">Not added</span>
+                        )}
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <img
+                          className="social-icon"
+                          src="/images/medium.svg"
+                          alt="medium"
+                        />
+                        {profileUser?.socialLinks?.medium || (
                           <span className="empty">Not added</span>
                         )}
                       </a>

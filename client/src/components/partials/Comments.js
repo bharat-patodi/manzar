@@ -155,7 +155,7 @@ class Comment extends React.Component {
                     placeholder="Write a comment..."
                     rows="3"
                   ></textarea>
-                  <button className="btn btn-sm btn-primary">
+                  <button className="standard-btn">
                     {isCreatingComment ? <Spinner /> : "Submit"}
                   </button>
                 </form>
@@ -219,7 +219,7 @@ function Comments(props) {
                 <div className="comment-actions">
                   <span
                     onClick={() => props.handleDeleteComment(comment.id)}
-                    className="btn"
+                    className="standard-btn"
                   >
                     🗑 Delete
                   </span>

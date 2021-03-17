@@ -142,7 +142,7 @@ class Modal extends React.Component {
                     </div>
                     <div className="user-info__header-actions">
                       <a href={portfolio.url}>
-                        <button className="btn">Portfolio</button>
+                        <button className="standard-btn">Portfolio</button>
                       </a>
                       <button
                         onClick={() => this.handleFavoriteClick()}
@@ -175,7 +175,7 @@ class Modal extends React.Component {
                 </div>
 
                 <section className="description-container">
-                  <p>{portfolio.description}</p>
+                  <p>{portfolio.author.description}</p>
 
                   <p>
                     I am available for work :
