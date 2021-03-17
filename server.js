@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
+const { MongoError } = require("mongodb");
 const { cloudinaryConfig } = require("./config/cloudinary");
 
 const app = express();
@@ -35,6 +36,18 @@ app.use("/api/portfolios", portfoliosRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
+
+app.use((req, res, next) => {
+  return res.status(404).json({ errors: { body: ["Page not found"] } });
+});
+
+app.use((error, req, res, next) => {
+  console.log(error);
+  if (error instanceof MongoError) {
+    return res.status(422).json({ errors: { body: [error.toString()] } });
+  }
+  return res.status(500).json({ errors: { body: [error.toString()] } });
 });
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
