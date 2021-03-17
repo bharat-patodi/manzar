@@ -28,6 +28,7 @@ class App extends Component {
   deleteUser = () => {
     this.setState({ isLoggedIn: false, user: null });
     localStorage.setItem(LOCAL_STORAGE_KEY, "");
+    this.props.history.push("/");
   };
   componentDidMount() {
     const token = localStorage.getItem(LOCAL_STORAGE_KEY);

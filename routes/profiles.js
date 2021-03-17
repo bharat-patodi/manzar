@@ -17,11 +17,13 @@ router.get("/:username", jwt.verifyTokenOptional, async (req, res, next) => {
 // follow a user
 router.post("/:username/follow", jwt.verifyToken, async (req, res, next) => {
   try {
+    console.log("sjdvhisd-----follow");
     const username = req.params.username;
     const user = await User.findOne({ username });
+
     const currentUser = await User.findByIdAndUpdate(
       req.user.id,
-      { $addToSet: { followings: user.id } },
+      { $addToSet: { following: user.id } },
       { new: true }
     );
     res.status(200).json({ profile: profileInfo(user, currentUser) });
@@ -33,13 +35,15 @@ router.post("/:username/follow", jwt.verifyToken, async (req, res, next) => {
 // unfollow a user
 router.delete("/:username/follow", jwt.verifyToken, async (req, res, next) => {
   try {
+    console.log("sjdvhisd-----unfollow");
     const username = req.params.username;
     const user = await User.findOne({ username });
     const currentUser = await User.findByIdAndUpdate(
       req.user.id,
-      { $pull: { followings: user.id } },
+      { $pull: { following: user.id } },
       { new: true }
     );
+    console.log(currentUser);
     res.status(200).json({ profile: profileInfo(user, currentUser) });
   } catch (error) {
     next(error);
@@ -48,8 +52,9 @@ router.delete("/:username/follow", jwt.verifyToken, async (req, res, next) => {
 
 function profileInfo(user, currentUser) {
   const isFollowing = currentUser
-    ? currentUser?.followings?.includes(user.id)
+    ? currentUser?.following?.includes(user.id)
     : false;
+
   return {
     name: user.name,
     email: user.email,

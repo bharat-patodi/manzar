@@ -30,9 +30,7 @@ class Home extends Component {
           <div className="container">
             <h1>Portfolio is a box of chocolates!</h1>
             <Link to="/editor">
-              <button className="btn-large standard-btn hero-btn">
-                Add Portfolio
-              </button>
+              <button className="btn-large">Add Portfolio</button>
             </Link>
           </div>
         </section>
