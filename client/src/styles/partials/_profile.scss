@@ -2,6 +2,8 @@
   padding: 6rem 4rem 3rem 5rem;
 
   .avatar {
+    width: 7rem;
+    height: 7rem;
     .profile-avatar {
       @extend .header__avatar;
       width: 100%;

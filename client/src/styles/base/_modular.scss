@@ -46,6 +46,7 @@ button {
   cursor: pointer;
   padding: 0.5rem 1rem;
   color: $white-color;
+  margin: 0 0.2rem;
   &:hover {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -93,6 +94,11 @@ button {
   &:hover {
     background-color: rgba(darken($primary-color, 50%), 0.3);
   }
+}
+
+.hero-btn {
+  padding: 1rem 1.2rem;
+  font-size: 1.4rem;
 }
 
 .api-fetch-error {

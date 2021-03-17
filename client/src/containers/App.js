@@ -29,7 +29,6 @@ class App extends Component {
     this.setState({ isLoggedIn: false, user: null });
     localStorage.setItem(LOCAL_STORAGE_KEY, "");
   };
-
   componentDidMount() {
     const token = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (token) {
@@ -118,10 +117,10 @@ function UnAuthenticatedApp(props) {
         <Home />
       </Route>
       <Route path="/register">
-        <Register />
+        <Register updateUser={props.updateUser} />
       </Route>
       <Route path="/login">
-        <Login />
+        <Login updateUser={props.updateUser} />
       </Route>
       <Route path="/profiles/:username">
         <Profile user={props.user} />

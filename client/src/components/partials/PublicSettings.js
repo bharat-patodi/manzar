@@ -125,7 +125,7 @@ export default function PublicSettings(props) {
           </div>
         </div>
         <div className="add-btn">
-          <button className="standard-btn" type="submit">
+          <button className="standard-btn hero-btn" type="submit">
             {props.isUpdating ? <Spinner /> : "Save Profile"}
           </button>
         </div>
