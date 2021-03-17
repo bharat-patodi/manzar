@@ -234,11 +234,13 @@ class Settings extends Component {
           <div className="profile-setting">
             <div className="user-profile-header flex">
               <div className="avatar">
-                <img
-                  className="user-avatar"
-                  src={avatar ?? "http://i.imgur.com/Xzm3mI0.jpg"}
-                  alt="profile-avatar"
-                ></img>
+                <Link to={`/profiles/${username}`}>
+                  <img
+                    className="user-avatar"
+                    src={avatar ?? "http://i.imgur.com/Xzm3mI0.jpg"}
+                    alt="profile-avatar"
+                  ></img>
+                </Link>
               </div>
               <h1>{name}</h1>
             </div>

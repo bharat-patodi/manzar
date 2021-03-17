@@ -3,12 +3,14 @@ import { Link, withRouter } from "react-router-dom";
 import { PROFILE_URL, LOCAL_STORAGE_KEY } from "../utility/constants";
 import Spinner from "./partials/Spinner";
 import moment from "moment";
+import ToggleButton from "react-toggle-button";
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       profileUser: null,
+      toggleActive: false,
       error: "",
     };
   }
@@ -62,6 +64,7 @@ class Profile extends React.Component {
 
   render() {
     const { profileUser, error } = this.state;
+    const borderRadiusStyle = { borderRadius: 8 };
 
     if (error) {
       return <p className="api-fetch-error">{error}</p>;
@@ -77,9 +80,7 @@ class Profile extends React.Component {
             <div className="avatar">
               <img
                 className="profile-avatar"
-                src={
-                  profileUser?.profileImage || "http://i.imgur.com/Xzm3mI0.jpg"
-                }
+                src={profileUser?.avatar || "http://i.imgur.com/Xzm3mI0.jpg"}
                 alt="profile-avatar"
               ></img>
             </div>
@@ -87,9 +88,18 @@ class Profile extends React.Component {
             <div className="profile-content">
               <h1 className="profile-name">{profileUser?.name}</h1>
               <p className="profile-locality">{profileUser?.location}</p>
-              {/* <p className="profile-bio">{profileUser?.bio}</p> */}
+              {/* <ToggleButton
+                availability={profileUser.availability}
+                value={this.state.toggleActive || false}
+                thumbStyle={borderRadiusStyle}
+                trackStyle={borderRadiusStyle}
+                onToggle={(toggleActive) => {
+                  this.setState({
+                    toggleActive: !toggleActive,
+                  });
+                }} */}
+              />
               <div className="profile-actions">
-                <div className="toggle"></div>
                 {profileUser.username === this.props.user.username ? (
                   <Link className="standard-btn" to="/settings">
                     Edit profile
@@ -107,16 +117,17 @@ class Profile extends React.Component {
                       />
                       {profileUser.following ? "Unfollow" : "Follow"}{" "}
                     </button>
-                    <button>
-                      <a className="standard-btn" href="mailto:abc@gamil.com">
+
+                    <a href="mailto:abc@gamil.com">
+                      <button className="standard-btn">
                         <img
                           className="mail-icon"
                           src="/images/mail.svg"
                           alt="mail"
                         />
                         Hire Me
-                      </a>
-                    </button>
+                      </button>
+                    </a>
                   </>
                 )}
               </div>
@@ -138,7 +149,7 @@ class Profile extends React.Component {
                 <section className="content-section profile-section-bio">
                   <h2 className="section-label">About Me</h2>
                   <p className="empty-description">
-                    {profileUser?.bio ||
+                    {profileUser?.description ||
                       `${profileUser?.name} hasn’t added a biography yet 🙁`}
                   </p>
                 </section>
@@ -211,6 +222,18 @@ class Profile extends React.Component {
                           alt="mail"
                         />
                         {profileUser?.socialLinks?.github || (
+                          <span className="empty">Not added</span>
+                        )}
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <img
+                          className="social-icon"
+                          src="/images/medium.svg"
+                          alt="medium"
+                        />
+                        {profileUser?.socialLinks?.medium || (
                           <span className="empty">Not added</span>
                         )}
                       </a>
