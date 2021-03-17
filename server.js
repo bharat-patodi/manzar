@@ -6,7 +6,7 @@ const { MongoError } = require("mongodb");
 const { cloudinaryConfig } = require("./config/cloudinary");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 require("dotenv").config();
 
@@ -27,12 +27,16 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("*", cloudinaryConfig);
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "client/build")));
 
 app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/profiles", profilesRouter);
 app.use("/api/portfolios", portfoliosRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
 
 app.use((req, res, next) => {
   return res.status(404).json({ errors: { body: ["Page not found"] } });
