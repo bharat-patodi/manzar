@@ -98,7 +98,8 @@ class Profile extends React.Component {
                     toggleActive: !toggleActive,
                   });
                 }} */}
-              />
+              {/* /> */}
+
               <div className="profile-actions">
                 {profileUser.username === this.props.user.username ? (
                   <Link className="standard-btn" to="/settings">
